@@ -16,16 +16,16 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen p-4">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen">
 
-    <div class="w-full max-w-6xl mx-auto">
+    <div class="w-screen h-screen">
         <!-- The style attribute here enforces the 16:9 aspect ratio -->
-        <div id="presentation-container" class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col" style="aspect-ratio: 16 / 9;">
+        <div id="presentation-container" class="bg-white dark:bg-gray-800 shadow-2xl overflow-hidden flex flex-col w-full h-full">
             
             <!-- Slide Content Area -->
-            <div id="slide-content" class="flex-grow p-8 md:p-12 slide-content overflow-y-auto">
-                <h1 id="slide-title" class="text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6"></h1>
-                <div id="slide-body" class="text-lg md:text-xl space-y-4"></div>
+            <div id="slide-content" class="flex-grow p-12 md:p-16 slide-content overflow-y-auto">
+                <h1 id="slide-title" class="text-5xl md:text-6xl font-bold text-indigo-600 dark:text-indigo-400 mb-8"></h1>
+                <div id="slide-body" class="text-2xl md:text-3xl space-y-5"></div>
             </div>
 
             <!-- Footer with Navigation and Counter -->
@@ -51,12 +51,12 @@
         const slides = [
             {
                 title: "Shadowing in JavaScript",
-                content: `<p class="text-2xl">Understanding Scope and Variable Overlapping</p><p class="mt-8 text-gray-500">A seminar on a core concept in JS.</p>`
+                content: `<p class="text-4xl">Understanding Scope and Variable Overlapping</p><p class="mt-8 text-gray-500">A seminar on a core concept in JS.</p>`
             },
             {
                 title: "What is Shadowing?",
                 content: `
-                    <ul class="list-disc pl-6 space-y-3">
+                    <ul class="list-disc pl-8 space-y-4">
                         <li>Shadowing occurs when a variable declared within a certain scope (e.g., a function or a block) has the same name as a variable in an outer scope.</li>
                         <li>When this happens, the inner variable "shadows" or hides the outer variable.</li>
                         <li>Accessing the variable name within the inner scope will refer to the inner variable.</li>
@@ -66,8 +66,8 @@
             {
                 title: "Example: Variable Shadowing",
                 content: `
-                    <p class="mb-4">An outer variable is shadowed by an inner variable within a specific block.</p>
-                    <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-sm h-full"><code class="language-js">
+                    <p class="mb-4 text-2xl">An outer variable is shadowed by an inner variable within a specific block.</p>
+                    <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-xl h-full"><code class="language-js">
 let pm = "Narendra Modi";
 
 {
@@ -82,16 +82,16 @@ console.log("After result: " + pm);
             {
                 title: "Output & Explanation",
                 content: `
-                    <div class="flex flex-col md:flex-row gap-4 h-full">
+                    <div class="flex flex-col md:flex-row gap-6 h-full">
                         <div class="w-full md:w-1/2 flex flex-col">
-                            <p class="mb-2 text-base font-semibold flex-shrink-0">Console Output:</p>
-                            <pre class="bg-gray-900 text-white p-4 rounded-lg text-sm flex-grow"><code class="language-console">
+                            <p class="mb-2 text-xl font-semibold flex-shrink-0">Console Output:</p>
+                            <pre class="bg-gray-900 text-white p-4 rounded-lg text-xl flex-grow"><code class="language-console">
 > During voting: Rahul Gandhi
 > After result: Narendra Modi
                             </code></pre>
                         </div>
                         <div class="w-full md:w-1/2 flex flex-col">
-                             <p class="mb-2 text-base font-semibold flex-shrink-0">Le Rahul Gandhi :</p>
+                             <p class="mb-2 text-xl font-semibold flex-shrink-0">Le Rahul Gandhi :</p>
                              <!-- This div is now a placeholder for the preloaded video -->
                              <div id="video-placeholder" class="w-full flex-grow rounded-lg overflow-hidden"></div>
                         </div>
@@ -101,7 +101,7 @@ console.log("After result: " + pm);
             {
                 title: "The Scope Chain",
                 content: `
-                    <ul class="list-disc pl-6 space-y-3">
+                    <ul class="list-disc pl-8 space-y-4">
                         <li>When you use a variable, JavaScript looks for it in the current scope.</li>
                         <li>If it doesn't find it, it looks in the outer scope.</li>
                         <li>This continues until it reaches the global scope.</li>
@@ -112,7 +112,7 @@ console.log("After result: " + pm);
             {
                 title: "Types of Shadowing",
                 content: `
-                    <ul class="list-disc pl-6 space-y-3">
+                    <ul class="list-disc pl-8 space-y-4">
                         <li><strong>Variable Shadowing:</strong> As seen in the previous example. Can happen with <code>let</code>, <code>const</code>, or <code>var</code>.</li>
                         <li><strong>Function Shadowing:</strong> A function in an inner scope can shadow a function in an outer scope.</li>
                         <li><strong>Parameter Shadowing:</strong> A function parameter can shadow a variable from an outer scope.</li>
@@ -122,8 +122,8 @@ console.log("After result: " + pm);
             {
                 title: "Illegal Shadowing",
                 content: `
-                    <p class="mb-4">With <code>let</code> and <code>const</code>, you cannot re-declare the same variable in the same block scope.</p>
-                    <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-sm"><code class="language-js">
+                    <p class="mb-4 text-2xl">With <code>let</code> and <code>const</code>, you cannot re-declare the same variable in the same block scope.</p>
+                    <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-xl"><code class="language-js">
 let color = "blue"; // Outer scope
 
 // This is a new, standalone block scope
@@ -139,7 +139,7 @@ let color = "blue"; // Outer scope
             {
                 title: "Potential Pitfalls",
                 content: `
-                    <ul class="list-disc pl-6 space-y-3">
+                    <ul class="list-disc pl-8 space-y-4">
                         <li><strong>Unintended Behavior:</strong> Accidentally shadowing a variable can lead to bugs that are hard to track down. You might modify a local variable thinking you are changing the outer one.</li>
                         <li><strong>Code Readability:</strong> Using the same name for different variables can make the code confusing for other developers (and your future self!).</li>
                     </ul>
@@ -148,8 +148,8 @@ let color = "blue"; // Outer scope
             {
                 title: "Cons: Unintended Side Effects",
                 content: `
-                    <p class="mb-4">Shadowing can prevent you from modifying an outer variable when you intend to.</p>
-                    <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-sm"><code class="language-js">
+                    <p class="mb-4 text-2xl">Shadowing can prevent you from modifying an outer variable when you intend to.</p>
+                    <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-xl"><code class="language-js">
 let count = 100;
 
 function updateCount() {
@@ -166,7 +166,7 @@ console.log(count); // Prints 100. The outer variable was not affected.
             {
                 title: "Cons: Reduced Readability",
                 content: `
-                    <ul class="list-disc pl-6 space-y-3">
+                    <ul class="list-disc pl-8 space-y-4">
                         <li><strong>Mental Overhead:</strong> Forces developers to constantly track which scope a variable belongs to. Is <code>user</code> the global user object or the local one?</li>
                         <li><strong>Code Obfuscation:</strong> Makes the code's intent less clear at a glance. It hides information, which is generally the opposite of what good code should do.</li>
                         <li><strong>Difficult Debugging:</strong> When a bug occurs, shadowed variables are a common source of confusion, making it harder to trace the flow of data.</li>
@@ -177,7 +177,7 @@ console.log(count); // Prints 100. The outer variable was not affected.
                 title: "Pros: Is Shadowing Ever Good?",
                 content: `
                     <p>Yes, but it should be intentional and clear. It's not inherently evil.</p>
-                    <ul class="list-disc pl-6 space-y-3 mt-4">
+                    <ul class="list-disc pl-8 space-y-4 mt-4">
                         <li><strong>Encapsulation:</strong> It allows inner scopes (like helper functions) to operate independently without worrying about variable name collisions from the outer scope.</li>
                         <li><strong>Convenience:</strong> Avoids the need to create slightly different variable names (e.g., <code>outerIndex</code>, <code>innerIndex</code>) when the context makes the scope obvious.</li>
                     </ul>
@@ -186,8 +186,8 @@ console.log(count); // Prints 100. The outer variable was not affected.
             {
                 title: "Pros: Practical Use Cases",
                 content: `
-                    <p class="mb-4">Intentional shadowing is common and often necessary.</p>
-                    <ul class="list-disc pl-6 space-y-3">
+                    <p class="mb-4 text-2xl">Intentional shadowing is common and often necessary.</p>
+                    <ul class="list-disc pl-8 space-y-4">
                         <li><strong>Function Parameters:</strong> The most accepted form. A parameter <code>id</code> naturally shadows any outer variable named <code>id</code>.</li>
                         <li><strong>Helper Functions:</strong> An inner function can safely reuse common variable names like <code>i</code>, <code>data</code>, or <code>item</code> without side effects.</li>
                     </ul>
@@ -196,7 +196,7 @@ console.log(count); // Prints 100. The outer variable was not affected.
             {
                 title: "Best Practices",
                 content: `
-                    <ul class="list-disc pl-6 space-y-3">
+                    <ul class="list-disc pl-8 space-y-4">
                         <li><strong>Avoid Shadowing:</strong> When in doubt, don't. Use clear, descriptive, and unique variable names.</li>
                         <li><strong>Use <code>let</code> and <code>const</code>:</strong> They have block scope, which makes shadowing more predictable and less error-prone than <code>var</code>.</li>
                         <li><strong>Code Linters:</strong> Tools like ESLint can be configured to warn you about shadowed variables, helping you catch them early.</li>
@@ -206,7 +206,7 @@ console.log(count); // Prints 100. The outer variable was not affected.
             {
                 title: "Conclusion",
                 content: `
-                    <ul class="list-disc pl-6 space-y-3">
+                    <ul class="list-disc pl-8 space-y-4">
                         <li>Shadowing is a natural consequence of lexical scoping in JavaScript.</li>
                         <li>While it has some valid uses for encapsulation, it often leads to bugs and confusion.</li>
                         <li>Understanding the scope chain is key to mastering it.</li>
@@ -216,7 +216,7 @@ console.log(count); // Prints 100. The outer variable was not affected.
             },
             {
                 title: "Thank You!",
-                content: `<p class="text-3xl">Questions?</p>`
+                content: `<p class="text-4xl">Questions?</p>`
             }
         ];
 
