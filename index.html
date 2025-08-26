@@ -18,7 +18,7 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen p-4">
 
-    <div class="w-full max-w-4xl mx-auto">
+    <div class="w-full max-w-6xl mx-auto">
         <!-- The style attribute here enforces the 16:9 aspect ratio -->
         <div id="presentation-container" class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col" style="aspect-ratio: 16 / 9;">
             
@@ -122,16 +122,16 @@ console.log("After result: " + pm);
             {
                 title: "Illegal Shadowing",
                 content: `
-                    <p class="mb-4">With <code>let</code> and <code>const</code>, you cannot declare the same variable twice in the same scope.</p>
+                    <p class="mb-4">With <code>let</code> and <code>const</code>, you cannot re-declare the same variable in the same block scope.</p>
                     <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-sm"><code class="language-js">
-function test() {
-  let x = 10;
-  // let x = 20; // This is an error. 'x' is already declared.
+let color = "blue"; // Outer scope
 
-  if (true) {
-    let y = 30; // This is fine.
-    console.log(y);
-  }
+// This is a new, standalone block scope
+{
+  let color = "red"; // This is legal, it shadows the outer 'color'.
+  
+  // let color = "green"; // This is ILLEGAL.
+  // SyntaxError: 'color' has already been declared in this block.
 }
                     </code></pre>
                 `
