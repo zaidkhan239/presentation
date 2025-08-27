@@ -120,97 +120,69 @@ console.log("After result: " + pm);
                 `
             },
             {
-                title: "Illegal Shadowing",
+                title: "Function & Parameter Shadowing",
                 content: `
-                    <p class="mb-4 text-2xl">With <code>let</code> and <code>const</code>, you cannot re-declare the same variable in the same block scope.</p>
-                    <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-xl"><code class="language-js">
-let color = "blue"; // Outer scope
-
-// This is a new, standalone block scope
-{
-  let color = "red"; // This is legal, it shadows the outer 'color'.
-  
-  // let color = "green"; // This is ILLEGAL.
-  // SyntaxError: 'color' has already been declared in this block.
-}
-                    </code></pre>
-                `
-            },
-            {
-                title: "Potential Pitfalls",
-                content: `
-                    <ul class="list-disc pl-8 space-y-4">
-                        <li><strong>Unintended Behavior:</strong> Accidentally shadowing a variable can lead to bugs that are hard to track down. You might modify a local variable thinking you are changing the outer one.</li>
-                        <li><strong>Code Readability:</strong> Using the same name for different variables can make the code confusing for other developers (and your future self!).</li>
-                    </ul>
-                `
-            },
-            {
-                title: "Cons: Unintended Side Effects",
-                content: `
-                    <p class="mb-4 text-2xl">Shadowing can prevent you from modifying an outer variable when you intend to.</p>
-                    <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-xl"><code class="language-js">
-let count = 100;
-
-function updateCount() {
-  let count = 0; // Shadows the outer 'count'
-  count++; // This only changes the inner 'count' to 1
-  console.log(count); // Prints 1
+                    <div class="flex flex-col md:flex-row gap-6 h-full">
+                        <div class="w-full md:w-1/2 flex flex-col">
+                            <p class="mb-2 text-xl font-semibold flex-shrink-0">Function Shadowing:</p>
+                            <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-lg flex-grow"><code class="language-js">
+function sayHello() {
+  console.log("Outer Hello");
 }
 
-updateCount();
-console.log(count); // Prints 100. The outer variable was not affected.
-                    </code></pre>
+function greet() {
+  function sayHello() { // Shadows outer function
+    console.log("Inner Hello");
+  }
+  sayHello();
+}
+
+greet(); // Output: Inner Hello
+                            </code></pre>
+                        </div>
+                        <div class="w-full md:w-1/2 flex flex-col">
+                             <p class="mb-2 text-xl font-semibold flex-shrink-0">Parameter Shadowing:</p>
+                             <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-lg flex-grow"><code class="language-js">
+let user = "Alice";
+
+function welcome(user) { // Parameter shadows outer let
+  console.log("Welcome, " + user);
+}
+
+welcome("Bob"); // Output: Welcome, Bob
+console.log(user); // Output: Alice
+                            </code></pre>
+                        </div>
+                    </div>
                 `
             },
             {
-                title: "Cons: Reduced Readability",
+                title: "Advantages of Shadowing",
                 content: `
                     <ul class="list-disc pl-8 space-y-4">
-                        <li><strong>Mental Overhead:</strong> Forces developers to constantly track which scope a variable belongs to. Is <code>user</code> the global user object or the local one?</li>
-                        <li><strong>Code Obfuscation:</strong> Makes the code's intent less clear at a glance. It hides information, which is generally the opposite of what good code should do.</li>
-                        <li><strong>Difficult Debugging:</strong> When a bug occurs, shadowed variables are a common source of confusion, making it harder to trace the flow of data.</li>
+                        <li><strong>Encapsulation:</strong> Allows inner functions to operate independently without accidentally modifying outer variables.</li>
+                        <li><strong>Reduced Namespace Pollution:</strong> Prevents the need to create many slightly different variable names (e.g., <code>data1</code>, <code>data2</code>).</li>
+                        <li><strong>Convenience:</strong> Useful in short-lived scopes like loops where reusing common names like <code>i</code> or <code>item</code> is intuitive.</li>
                     </ul>
                 `
             },
             {
-                title: "Pros: Is Shadowing Ever Good?",
+                title: "Disadvantages of Shadowing",
                 content: `
-                    <p>Yes, but it should be intentional and clear. It's not inherently evil.</p>
-                    <ul class="list-disc pl-8 space-y-4 mt-4">
-                        <li><strong>Encapsulation:</strong> It allows inner scopes (like helper functions) to operate independently without worrying about variable name collisions from the outer scope.</li>
-                        <li><strong>Convenience:</strong> Avoids the need to create slightly different variable names (e.g., <code>outerIndex</code>, <code>innerIndex</code>) when the context makes the scope obvious.</li>
+                    <ul class="list-disc pl-8 space-y-4">
+                        <li><strong>Reduced Readability:</strong> Makes it harder to know which variable is being accessed at a glance, increasing cognitive load.</li>
+                        <li><strong>Unintended Behavior:</strong> Can lead to tricky bugs where you think you're modifying an outer variable, but you're only changing the inner one.</li>
+                        <li><strong>Difficult Debugging:</strong> Tracing the flow of data becomes more complex when the same variable name refers to different values.</li>
                     </ul>
                 `
             },
             {
-                title: "Pros: Practical Use Cases",
-                content: `
-                    <p class="mb-4 text-2xl">Intentional shadowing is common and often necessary.</p>
-                    <ul class="list-disc pl-8 space-y-4">
-                        <li><strong>Function Parameters:</strong> The most accepted form. A parameter <code>id</code> naturally shadows any outer variable named <code>id</code>.</li>
-                        <li><strong>Helper Functions:</strong> An inner function can safely reuse common variable names like <code>i</code>, <code>data</code>, or <code>item</code> without side effects.</li>
-                    </ul>
-                `
-            },
-            {
-                title: "Best Practices",
+                title: "Common Uses",
                 content: `
                     <ul class="list-disc pl-8 space-y-4">
-                        <li><strong>Avoid Shadowing:</strong> When in doubt, don't. Use clear, descriptive, and unique variable names.</li>
-                        <li><strong>Use <code>let</code> and <code>const</code>:</strong> They have block scope, which makes shadowing more predictable and less error-prone than <code>var</code>.</li>
-                        <li><strong>Code Linters:</strong> Tools like ESLint can be configured to warn you about shadowed variables, helping you catch them early.</li>
-                    </ul>
-                `
-            },
-            {
-                title: "Conclusion",
-                content: `
-                    <ul class="list-disc pl-8 space-y-4">
-                        <li>Shadowing is a natural consequence of lexical scoping in JavaScript.</li>
-                        <li>While it has some valid uses for encapsulation, it often leads to bugs and confusion.</li>
-                        <li>Understanding the scope chain is key to mastering it.</li>
-                        <li>Prioritize code clarity and maintainability above all.</li>
+                        <li><strong>Function Parameters:</strong> The most common and accepted use. A parameter naturally shadows any outer variable with the same name.</li>
+                        <li><strong>Loops:</strong> Reusing a counter variable like <code>i</code> inside nested loops without conflict.</li>
+                        <li><strong>Helper Functions:</strong> An inner utility function can safely reuse generic variable names without affecting the parent function's state.</li>
                     </ul>
                 `
             },
@@ -230,14 +202,10 @@ console.log(count); // Prints 100. The outer variable was not affected.
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
         
-        // Get a reference to the preloaded video element
         const preloadedVideo = document.getElementById('preloaded-video');
 
         function showSlide(index) {
-            // Pause the video before doing anything else, to ensure it stops when leaving the slide.
             preloadedVideo.pause();
-            
-            // Fade out
             slideContentEl.style.opacity = 0;
 
             setTimeout(() => {
@@ -245,31 +213,20 @@ console.log(count); // Prints 100. The outer variable was not affected.
                 slideTitleEl.textContent = slide.title;
                 slideBodyEl.innerHTML = slide.content;
 
-                // If this is the slide with the video, find the placeholder, append the video, and play it.
                 if (slide.title === "Output & Explanation") {
                     const placeholder = document.getElementById('video-placeholder');
                     if (placeholder) {
                         placeholder.appendChild(preloadedVideo);
-                        preloadedVideo.style.display = 'block'; // Make it visible
-                        // Explicitly play the video every time the slide is shown.
-                        preloadedVideo.play().catch(error => {
-                            // Autoplay was prevented. This can happen if the user hasn't interacted with the page yet.
-                            // The video will still be visible and can be played manually if controls were enabled.
-                            console.log("Autoplay prevented: ", error);
-                        });
+                        preloadedVideo.style.display = 'block';
+                        preloadedVideo.play().catch(error => console.log("Autoplay prevented: ", error));
                     }
                 }
 
-                // Update counter
                 slideCounterEl.textContent = `Slide ${index + 1} of ${slides.length}`;
-
-                // Update button states
                 prevBtn.disabled = index === 0;
                 nextBtn.disabled = index === slides.length - 1;
-                
-                // Fade in
                 slideContentEl.style.opacity = 1;
-            }, 300); // Match timeout with transition duration
+            }, 300);
         }
 
         function changeSlide(n) {
@@ -277,16 +234,14 @@ console.log(count); // Prints 100. The outer variable was not affected.
             if (currentSlide >= 0 && currentSlide < slides.length) {
                 showSlide(currentSlide);
             } else {
-                // reset to valid range
                 currentSlide = Math.max(0, Math.min(slides.length - 1, currentSlide));
             }
         }
-
+        
         // Event Listeners
         prevBtn.addEventListener('click', () => changeSlide(-1));
         nextBtn.addEventListener('click', () => changeSlide(1));
         
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') {
                 if(currentSlide < slides.length - 1) changeSlide(1);
@@ -295,7 +250,6 @@ console.log(count); // Prints 100. The outer variable was not affected.
             }
         });
 
-        // Initial slide load
         window.onload = () => {
             showSlide(currentSlide);
         };
