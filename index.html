@@ -56,9 +56,10 @@
                 title: "What is Shadowing?",
                 content: `
                     <ul class="list-disc pl-8 space-y-4">
-                        <li>Shadowing occurs when a variable declared within a certain scope (e.g., a function or a block) has the same name as a variable in an outer scope.</li>
-                        <li>When this happens, the inner variable "shadows" or hides the outer variable.</li>
+                        <li>Shadowing occurs when a variable declared within a certain scope has the same name as a variable in an outer scope.</li>
+                        <li>The inner variable temporarily "shadows" or hides the outer variable.</li>
                         <li>Accessing the variable name within the inner scope will refer to the inner variable.</li>
+                        <li>It's a direct result of how JavaScript's <strong>lexical scoping</strong> works.</li>
                     </ul>
                 `
             },
@@ -113,10 +114,27 @@ console.log("After result: " + pm);
                 content: `
                     <ul class="list-disc pl-8 space-y-4">
                         <li>When you use a variable, JavaScript looks for it in the current scope.</li>
-                        <li>If it doesn't find it, it looks in the outer scope.</li>
+                        <li>If it's not found, it looks in the immediately enclosing outer scope.</li>
                         <li>This continues until it reaches the global scope.</li>
-                        <li>Shadowing happens when the lookup finds a variable in a closer, inner scope first.</li>
+                        <li>Think of it as a one-way ladder; JavaScript can look up, but not down into inner scopes.</li>
                     </ul>
+                `
+            },
+            {
+                title: "Illegal Shadowing",
+                content: `
+                    <p class="mb-4 text-2xl">With <code>let</code> and <code>const</code>, you cannot re-declare the same variable in the same block scope.</p>
+                    <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-xl"><code class="language-js">
+let color = "blue"; // Outer scope
+
+// This is a new, standalone block scope
+{
+  let color = "red"; // This is legal, it shadows the outer 'color'.
+  
+  // let color = "green"; // This is ILLEGAL.
+  // SyntaxError: 'color' has already been declared in this block.
+}
+                    </code></pre>
                 `
             },
             {
@@ -126,6 +144,7 @@ console.log("After result: " + pm);
                         <li><strong>Encapsulation:</strong> Allows inner functions to operate independently without accidentally modifying outer variables.</li>
                         <li><strong>Reduced Namespace Pollution:</strong> Prevents the need to create many slightly different variable names (e.g., <code>data1</code>, <code>data2</code>).</li>
                         <li><strong>Convenience:</strong> Useful in short-lived scopes like loops where reusing common names like <code>i</code> or <code>item</code> is intuitive.</li>
+                        <li><strong>Contextual Clarity:</strong> Using a generic name like <code>id</code> as a parameter can be clearer than creating a new name like <code>userIdFromParam</code>.</li>
                     </ul>
                 `
             },
@@ -136,16 +155,7 @@ console.log("After result: " + pm);
                         <li><strong>Reduced Readability:</strong> Makes it harder to know which variable is being accessed at a glance, increasing cognitive load.</li>
                         <li><strong>Unintended Behavior:</strong> Can lead to tricky bugs where you think you're modifying an outer variable, but you're only changing the inner one.</li>
                         <li><strong>Difficult Debugging:</strong> Tracing the flow of data becomes more complex when the same variable name refers to different values.</li>
-                    </ul>
-                `
-            },
-            {
-                title: "Common Uses",
-                content: `
-                    <ul class="list-disc pl-8 space-y-4">
-                        <li><strong>Function Parameters:</strong> The most common and accepted use. A parameter naturally shadows any outer variable with the same name.</li>
-                        <li><strong>Loops:</strong> Reusing a counter variable like <code>i</code> inside nested loops without conflict.</li>
-                        <li><strong>Helper Functions:</strong> An inner utility function can safely reuse generic variable names without affecting the parent function's state.</li>
+                        <li><strong>Temporal Dead Zone (TDZ) Errors:</strong> Can cause errors if you try to access a variable before its declaration in a block where it is shadowed.</li>
                     </ul>
                 `
             },
