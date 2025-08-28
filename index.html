@@ -120,53 +120,6 @@ console.log("After result: " + pm);
                 `
             },
             {
-                title: "Types of Shadowing",
-                content: `
-                    <ul class="list-disc pl-8 space-y-4">
-                        <li><strong>Variable Shadowing:</strong> As seen in the previous example. Can happen with <code>let</code>, <code>const</code>, or <code>var</code>.</li>
-                        <li><strong>Function Shadowing:</strong> A function in an inner scope can shadow a function in an outer scope.</li>
-                        <li><strong>Parameter Shadowing:</strong> A function parameter can shadow a variable from an outer scope.</li>
-                    </ul>
-                `
-            },
-             {
-                title: "Function & Parameter Shadowing",
-                content: `
-                    <div class="flex flex-col md:flex-row gap-6 h-full">
-                        <div class="w-full md:w-1/2 flex flex-col">
-                            <p class="mb-2 text-xl font-semibold flex-shrink-0">Function Shadowing:</p>
-                            <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-lg flex-grow"><code class="language-js">
-function sayHello() {
-  console.log("Outer Hello");
-}
-
-function greet() {
-  function sayHello() { // Shadows outer function
-    console.log("Inner Hello");
-  }
-  sayHello();
-}
-
-greet(); // Output: Inner Hello
-                            </code></pre>
-                        </div>
-                        <div class="w-full md:w-1/2 flex flex-col">
-                             <p class="mb-2 text-xl font-semibold flex-shrink-0">Parameter Shadowing:</p>
-                             <pre class="bg-gray-200 dark:bg-gray-900 p-4 rounded-lg text-lg flex-grow"><code class="language-js">
-let user = "Alice";
-
-function welcome(user) { // Parameter shadows outer let
-  console.log("Welcome, " + user);
-}
-
-welcome("Bob"); // Output: Welcome, Bob
-console.log(user); // Output: Alice
-                            </code></pre>
-                        </div>
-                    </div>
-                `
-            },
-            {
                 title: "Advantages of Shadowing",
                 content: `
                     <ul class="list-disc pl-8 space-y-4">
