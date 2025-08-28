@@ -19,7 +19,6 @@
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen">
 
     <div class="w-screen h-screen">
-        <!-- The style attribute here enforces the 16:9 aspect ratio -->
         <div id="presentation-container" class="bg-white dark:bg-gray-800 shadow-2xl overflow-hidden flex flex-col w-full h-full">
             
             <!-- Slide Content Area -->
@@ -60,6 +59,17 @@
                         <li>Shadowing occurs when a variable declared within a certain scope (e.g., a function or a block) has the same name as a variable in an outer scope.</li>
                         <li>When this happens, the inner variable "shadows" or hides the outer variable.</li>
                         <li>Accessing the variable name within the inner scope will refer to the inner variable.</li>
+                    </ul>
+                `
+            },
+            {
+                title: "An Intuitive Example",
+                content: `
+                    <p class="mb-6">Think about it like this:</p>
+                    <ul class="list-disc pl-8 space-y-4">
+                        <li>Imagine your school has a <strong>Head Boy named Rahul</strong> (the outer variable).</li>
+                        <li>Now, in your <strong>classroom</strong>, the teacher chooses a <strong>temporary Head Boy named Aman</strong> (the inner variable).</li>
+                        <li>Whenever you're inside the classroom, if someone says "Head Boy", everyone points to Aman. Rahul is still the real Head Boy, but he's <strong>hidden (shadowed)</strong> in that smaller area.</li>
                     </ul>
                 `
             },
@@ -119,7 +129,7 @@ console.log("After result: " + pm);
                     </ul>
                 `
             },
-            {
+             {
                 title: "Function & Parameter Shadowing",
                 content: `
                     <div class="flex flex-col md:flex-row gap-6 h-full">
