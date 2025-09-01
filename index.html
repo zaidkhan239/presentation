@@ -389,42 +389,82 @@
             </div>
         </div>
 
-        <!-- Slide 10: C# Code Example -->
+        <!-- Slide 10: Code Example 1: Participants -->
         <div class="slide slide-row">
             <div class="w-2/5 pr-8">
-                 <h2 class="text-2xl font-bold mb-4 text-slate-700">C# Code Example: Chatroom</h2>
-                 <p class="text-sm text-slate-600 mb-4">Here's a simple C# example. The <code class="bg-slate-200 text-sm px-1 rounded">Chatroom</code> is the <strong>Mediator</strong>, and each <code class="bg-slate-200 text-sm px-1 rounded">User</code> is a <strong>Colleague</strong>.</p>
-                 <p class="text-sm text-slate-600">Users don't know about each other; they only send messages to the chatroom. The chatroom then broadcasts the message to all other users.</p>
+                 <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 1: The Participants</h2>
+                 <p class="text-sm text-slate-600 mb-4">First, we define the contract for our mediator (<code class="bg-slate-200 text-sm px-1 rounded">IChatroom</code>) and the concrete implementation for our colleagues (<code class="bg-slate-200 text-sm px-1 rounded">User</code>).</p>
+                 <p class="text-sm text-slate-600">Notice how the <code class="bg-slate-200 text-sm px-1 rounded">User</code> knows about the mediator, but not about other users.</p>
             </div>
             <div class="w-3/5">
                 <div class="code-block">
 <span style="color: #808080;">// The Mediator Interface</span>
-<span style="color: #63b3ed;">public interface</span> <span style="color: #4fd1c5;">IChatroom</span> {
+<span style="color: #63b3ed;">public interface</span> <span style="color: #4fd1c5;">IChatroom</span>
+{
     <span style="color: #63b3ed;">void</span> Register(<span style="color: #4fd1c5;">User</span> user);
     <span style="color: #63b3ed;">void</span> SendMessage(<span style="color: #63b3ed;">string</span> message, <span style="color: #4fd1c5;">User</span> from);
 }
 
-<span style="color: #808080;">// The Colleague</span>
-<span style="color: #63b3ed;">public class</span> <span style="color: #4fd1c5;">User</span> {
+<span style="color: #808080;">// The Concrete Colleague</span>
+<span style="color: #63b3ed;">public class</span> <span style="color: #4fd1c5;">User</span>
+{
     <span style="color: #63b3ed;">public string</span> Name { <span style="color: #63b3ed;">get</span>; }
     <span style="color: #63b3ed;">private</span> <span style="color: #4fd1c5;">IChatroom</span> _chatroom;
-    <span style="color: #808080;">/* ... methods to send/receive ... */</span>
-}
 
-<span style="color: #808080;">// The Concrete Mediator</span>
-<span style="color: #63b3ed;">public class</span> <span style="color: #4fd1c5;">Chatroom</span> : <span style="color: #4fd1c5;">IChatroom</span> {
-    <span style="color: #63b3ed;">private</span> Dictionary&lt;<span style="color: #63b3ed;">string</span>, <span style="color: #4fd1c5;">User</span>&gt; _users = <span style="color: #63b3ed;">new</span>();
+    <span style="color: #63b3ed;">public</span> User(<span style="color: #63b3ed;">string</span> name) => Name = name;
 
-    <span style="color: #63b3ed;">public void</span> Register(<span style="color: #4fd1c5;">User</span> user) {
-        _users[user.Name] = user;
+    <span style="color: #63b3ed;">public void</span> SetChatroom(<span style="color: #4fd1c5;">IChatroom</span> chatroom) => _chatroom = chatroom;
+
+    <span style="color: #63b3ed;">public void</span> Send(<span style="color: #63b3ed;">string</span> message) => _chatroom.SendMessage(message, <span style="color: #63b3ed;">this</span>);
+    
+    <span style="color: #63b3ed;">public void</span> Receive(<span style="color: #63b3ed;">string</span> message) {
+        Console.WriteLine($<span style="color: #9f7aea;">"{Name} received: {message}"</span>);
     }
-    <span style="color: #808080;">/* ... SendMessage logic ... */</span>
 }
                 </div>
             </div>
         </div>
+        
+        <!-- Slide 11: Code Example 2: Mediator & Usage -->
+        <div class="slide slide-row">
+            <div class="w-2/5 pr-8">
+                 <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 2: The Mediator</h2>
+                 <p class="text-sm text-slate-600 mb-4">Next, the <code class="bg-slate-200 text-sm px-1 rounded">Chatroom</code> class implements the mediator interface. Its main job is to keep a list of users and broadcast messages.</p>
+                 <p class="text-sm text-slate-600">The final part shows how to wire everything up and use it.</p>
+            </div>
+            <div class="w-3/5">
+                <div class="code-block">
+<span style="color: #808080;">// The Concrete Mediator</span>
+<span style="color: #63b3ed;">public class</span> <span style="color: #4fd1c5;">Chatroom</span> : <span style="color: #4fd1c5;">IChatroom</span>
+{
+    <span style="color: #63b3ed;">private</span> Dictionary&lt;<span style="color: #63b3ed;">string</span>, <span style="color: #4fd1c5;">User</span>&gt; _users = <span style="color: #63b3ed;">new</span>();
 
-        <!-- Slide 11: Advantages & Disadvantages -->
+    <span style="color: #63b3ed;">public void</span> Register(<span style="color: #4fd1c5;">User</span> user)
+    {
+        _users[user.Name] = user;
+        user.SetChatroom(<span style="color: #63b3ed;">this</span>);
+    }
+
+    <span style="color: #63b3ed;">public void</span> SendMessage(<span style="color: #63b3ed;">string</span> message, <span style="color: #4fd1c5;">User</span> from)
+    {
+        <span style="color: #63b3ed;">foreach</span> (var user <span style="color: #63b3ed;">in</span> _users.Values)
+        {
+            <span style="color: #63b3ed;">if</span> (user != from) { user.Receive(message); }
+        }
+    }
+}
+<span style="color: #808080;">// Usage</span>
+<span style="color: #4fd1c5;">IChatroom</span> chatroom = <span style="color: #63b3ed;">new</span> <span style="color: #4fd1c5;">Chatroom</span>();
+<span style="color: #4fd1c5;">User</span> user1 = <span style="color: #63b3ed;">new</span> <span style="color: #4fd1c5;">User</span>(<span style="color: #9f7aea;">"Alice"</span>);
+<span style="color: #4fd1c5;">User</span> user2 = <span style="color: #63b3ed;">new</span> <span style="color: #4fd1c5;">User</span>(<span style="color: #9f7aea;">"Bob"</span>);
+chatroom.Register(user1);
+chatroom.Register(user2);
+user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="color: #808080;">// Bob receives the message</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Advantages & Disadvantages -->
         <div class="slide slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-2xl font-bold mb-4 text-green-600">Advantages</h2>
@@ -445,7 +485,7 @@
             </div>
         </div>
         
-        <!-- Slide 12: Concrete Example: GUI Form -->
+        <!-- Slide 13: Concrete Example: GUI Form -->
         <div class="slide slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-slate-700">A Concrete Example: GUI Form</h2>
@@ -475,7 +515,7 @@
             </div>
         </div>
 
-        <!-- Slide 13: Practical Applications -->
+        <!-- Slide 14: Practical Applications -->
         <div class="slide">
             <h2 class="text-3xl font-bold mb-6 text-slate-700 text-center">Practical Applications</h2>
             <p class="text-lg text-slate-600 mb-8 text-center">The Mediator pattern is ideal for scenarios with complex communication between multiple objects.</p>
@@ -498,7 +538,7 @@
             </div>
         </div>
 
-        <!-- Slide 14: Conclusion -->
+        <!-- Slide 15: Conclusion -->
         <div class="slide text-center">
             <h2 class="text-4xl font-bold mb-6 text-slate-700">Conclusion</h2>
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">The Mediator pattern is a powerful tool for simplifying complex communication webs, promoting loose coupling and creating more maintainable and scalable systems.</p>
