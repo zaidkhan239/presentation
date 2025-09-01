@@ -12,11 +12,17 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f0f4f8;
             color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
         .presentation-container {
-            max-width: 1000px;
-            margin: 2rem auto;
+            width: 90vw;
+            max-width: 1800px;
+            margin: auto;
             border-radius: 1rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -39,6 +45,10 @@
             flex-direction: column;
             justify-content: center;
         }
+        
+        .slide.active.slide-row {
+            flex-direction: row;
+        }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.98); }
@@ -57,6 +67,7 @@
             transition: all 0.3s ease;
             font-weight: 600;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 10;
         }
         .nav-button:hover {
             background-color: white;
@@ -82,6 +93,7 @@
             padding: 0.5rem 1rem;
             border-radius: 9999px;
             font-size: 0.875rem;
+            z-index: 10;
         }
 
         /* Slide-specific styles */
@@ -138,9 +150,53 @@
             color: #66a6ff;
         }
 
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .presentation-container {
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
+                border-radius: 0;
+                aspect-ratio: auto;
+            }
+
+            .slide {
+                padding: 2rem 1.5rem;
+                overflow-y: auto;
+            }
+
+            .slide.active {
+                justify-content: flex-start;
+            }
+
+            .slide-title-1 h1 { font-size: 2.5rem; }
+            .slide-title-1 p { font-size: 1.1rem; }
+            h2.text-4xl { font-size: 2rem !important; } /* Using important to override tailwind */
+            p.text-xl { font-size: 1rem !important; }
+
+            .agenda-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-button { bottom: 1rem; padding: 0.5rem 1rem; }
+            #prevBtn { left: 1rem; }
+            #nextBtn { right: 1rem; }
+            .slide-counter { bottom: 1.25rem; }
+
+            /* Fix for two-column layouts on mobile */
+            .slide.active.slide-row {
+                flex-direction: column;
+            }
+            .slide.active.slide-row > div {
+                width: 100% !important; /* Override tailwind w-1/2 */
+                padding-right: 0 !important;
+                margin-bottom: 2rem;
+            }
+        }
+
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
+<body>
 
     <div class="presentation-container">
         <!-- Slide 1: Title -->
@@ -172,17 +228,17 @@
              <p class="text-xl text-slate-600 mb-8">Design patterns are reusable solutions to common problems in software design. They are not direct code but descriptions of how to solve recurring issues, acting as blueprints that can be customized to solve specific problems.</p>
              <div class="icon-card-container">
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M17 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M6 9.5V12"/><path d="M12 6.5v8"/><path d="M18 9.5V12"/><path d="M9.5 6H12"/><path d="M14.5 18H12"/><path d="M9.5 18H7"/><path d="m14.5 6-2.5 2.5"/><path d="m9.5 12-2.5 2.5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M17 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M6 9.5V12"/><path d="M12 6.5v8"/><path d="M18 9.5V12"/><path d="M9.5 6H12"/><path d="M14.5 18H12"/><path d="M9.5 18H7"/><path d="m14.5 6-2.5 2.5"/><path d="m9.5 12-2.5 2.5"/></svg>
                      <h3 class="font-semibold text-lg">Common Vocabulary</h3>
                      <p class="text-sm text-slate-500">Facilitate communication among developers.</p>
                  </div>
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m16 8-4 4-4-4"/><path d="m16 14-4-4-4 4"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m16 8-4 4-4-4"/><path d="m16 14-4-4-4 4"/></svg>
                      <h3 class="font-semibold text-lg">Avoid Reinvention</h3>
                      <p class="text-sm text-slate-500">Prevent solving the same problems repeatedly.</p>
                  </div>
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
                      <h3 class="font-semibold text-lg">Improve Quality</h3>
                      <p class="text-sm text-slate-500">Lead to more robust and maintainable systems.</p>
                  </div>
@@ -190,7 +246,7 @@
         </div>
 
         <!-- Slide 4: What is Mediator? -->
-        <div class="slide items-center">
+        <div class="slide items-center slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-4xl font-bold mb-4 text-slate-700">What is the Mediator Pattern?</h2>
                 <p class="text-lg text-slate-600 mb-6">The Mediator pattern is a behavioral design pattern that defines an object (the mediator) that encapsulates how a set of objects (colleagues) interact. Instead of direct communication, colleagues interact through the mediator.</p>
@@ -205,7 +261,7 @@
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex justify-center items-center">
                         <div class="relative">
-                            <div class="w-20 h-20 bg-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">Mediator</div>
+                            <div class="w-20 h-20 bg-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg text-center leading-tight">Mediator</div>
                             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64">
                                 <!-- Colleague nodes -->
                                 <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-12 h-12 bg-purple-300 rounded-full shadow"></div>
@@ -243,7 +299,7 @@
         </div>
         
         <!-- Slide 6: Problem Without Mediator -->
-        <div class="slide items-center">
+        <div class="slide items-center slide-row">
             <div class="w-1/2 pr-8">
                  <h2 class="text-4xl font-bold mb-4 text-slate-700">Problem Without Mediator</h2>
                 <p class="text-lg text-slate-600 mb-6">Consider a system with N objects, where each object needs to communicate with every other object. The number of direct communication paths grows exponentially.</p>
@@ -264,17 +320,17 @@
              <p class="text-xl text-slate-600 mb-8 text-center">An excellent analogy for the Mediator pattern is an Air Traffic Controller (ATC), who manages all communication between pilots.</p>
              <div class="icon-card-container">
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 2v20"/><path d="m4.93 4.93 14.14 14.14"/><path d="m4.93 19.07 14.14-14.14"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 2v20"/><path d="m4.93 4.93 14.14 14.14"/><path d="m4.93 19.07 14.14-14.14"/></svg>
                      <h3 class="font-semibold text-lg">Chatroom</h3>
                      <p class="text-sm text-slate-500">Users communicate via a central chat server.</p>
                  </div>
                  <div class="icon-card">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
                      <h3 class="font-semibold text-lg">Customer Support</h3>
                      <p class="text-sm text-slate-500">Interactions are managed through a helpdesk system.</p>
                  </div>
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/></svg>
                      <h3 class="font-semibold text-lg">Auction System</h3>
                      <p class="text-sm text-slate-500">Bidders interact only through the auctioneer.</p>
                  </div>
@@ -338,3 +394,4 @@
     </script>
 </body>
 </html>
+
