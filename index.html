@@ -164,9 +164,9 @@
             padding: 1.5rem;
             border-radius: 0.75rem;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             overflow-x: auto;
-            white-space: pre;
+            white-space: pre-wrap;
         }
 
         /* Responsive Styles */
@@ -231,7 +231,7 @@
                 <li><span class="number">03</span> Why Mediator is Needed</li>
                 <li><span class="number">04</span> Real-life Examples & Analogy</li>
                 <li><span class="number">05</span> Structure & Components</li>
-                <li><span class="number">06</span> C# Code Example (Conceptual)</li>
+                <li><span class="number">06</span> JS Code Example (Conceptual)</li>
                 <li><span class="number">07</span> Advantages & Disadvantages</li>
                 <li><span class="number">08</span> Practical Applications</li>
                 <li><span class="number">09</span> Conclusion & Q&A</li>
@@ -441,73 +441,74 @@
 
         <div class="slide slide-row">
             <div class="w-2/5 pr-8">
-                 <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 1: The Participants</h2>
-                 <p class="text-sm text-slate-600 mb-4">First, we define the contract for our mediator (<code class="bg-slate-200 text-sm px-1 rounded">IChatroom</code>) and the concrete implementation for our colleagues (<code class="bg-slate-200 text-sm px-1 rounded">User</code>).</p>
-                 <p class="text-sm text-slate-600">Notice how the <code class="bg-slate-200 text-sm px-1 rounded">User</code> knows about the mediator, but not about other users.</p>
+                 <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 1: Chat Room</h2>
+                 <p class="text-sm text-slate-600 mb-4">A simple chat room example. The <code class="bg-slate-200 text-sm px-1 rounded">ChatRoom</code> is the <strong>Mediator</strong> and <code class="bg-slate-200 text-sm px-1 rounded">User</code> is the <strong>Colleague</strong>.</p>
             </div>
             <div class="w-3/5">
                 <div class="code-block">
-<span style="color: #808080;">// The Mediator Interface</span>
-<span style="color: #63b3ed;">public interface</span> <span style="color: #4fd1c5;">IChatroom</span>
-{
-    <span style="color: #63b3ed;">void</span> Register(<span style="color: #4fd1c5;">User</span> user);
-    <span style="color: #63b3ed;">void</span> SendMessage(<span style="color: #63b3ed;">string</span> message, <span style="color: #4fd1c5;">User</span> from);
+<span style="color: #808080;">// Mediator</span>
+<span style="color: #63b3ed;">class</span> ChatRoom {
+  <span style="color: #FBBF24;">showMessage</span>(user, message) {
+    console.log(`${user.name}: ${message}`);
+  }
 }
 
-<span style="color: #808080;">// The Concrete Colleague</span>
-<span style="color: #63b3ed;">public class</span> <span style="color: #4fd1c5;">User</span>
-{
-    <span style="color: #63b3ed;">public string</span> Name { <span style="color: #63b3ed;">get</span>; }
-    <span style="color: #63b3ed;">private</span> <span style="color: #4fd1c5;">IChatroom</span> _chatroom;
+<span style="color: #808080;">// Colleague</span>
+<span style="color: #63b3ed;">class</span> User {
+  <span style="color: #FBBF24;">constructor</span>(name, chatRoom) {
+    <span style="color: #63b3ed;">this</span>.name = name;
+    <span style="color: #63b3ed;">this</span>.chatRoom = chatRoom;
+  }
 
-    <span style="color: #63b3ed;">public</span> User(<span style="color: #63b3ed;">string</span> name) => Name = name;
-
-    <span style="color: #63b3ed;">public void</span> SetChatroom(<span style="color: #4fd1c5;">IChatroom</span> chatroom) => _chatroom = chatroom;
-
-    <span style="color: #63b3ed;">public void</span> Send(<span style="color: #63b3ed;">string</span> message) => _chatroom.SendMessage(message, <span style="color: #63b3ed;">this</span>);
-    
-    <span style="color: #63b3ed;">public void</span> Receive(<span style="color: #63b3ed;">string</span> message) {
-        Console.WriteLine($<span style="color: #9f7aea;">"{Name} received: {message}"</span>);
-    }
+  <span style="color: #FBBF24;">send</span>(message) {
+    <span style="color: #63b3ed;">this</span>.chatRoom.showMessage(<span style="color: #63b3ed;">this</span>, message);
+  }
 }
+
+<span style="color: #808080;">// Usage</span>
+<span style="color: #63b3ed;">const</span> chatRoom = <span style="color: #63b3ed;">new</span> ChatRoom();
+<span style="color: #63b3ed;">const</span> user1 = <span style="color: #63b3ed;">new</span> User("Alice", chatRoom);
+user1.send("Hi there!");
                 </div>
             </div>
         </div>
         
         <div class="slide slide-row">
             <div class="w-2/5 pr-8">
-                 <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 2: The Mediator</h2>
-                 <p class="text-sm text-slate-600 mb-4">Next, the <code class="bg-slate-200 text-sm px-1 rounded">Chatroom</code> class implements the mediator interface. Its main job is to keep a list of users and broadcast messages.</p>
-                 <p class="text-sm text-slate-600">The final part shows how to wire everything up and use it.</p>
+                 <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 2: Traffic Light</h2>
+                 <p class="text-sm text-slate-600 mb-4">Here, the <code class="bg-slate-200 text-sm px-1 rounded">TrafficLight</code> is the <strong>Mediator</strong>. It doesn't know about cars, it just broadcasts signals. The <code class="bg-slate-200 text-sm px-1 rounded">Car</code> (Colleague) listens for signals and reacts.</p>
             </div>
             <div class="w-3/5">
                 <div class="code-block">
-<span style="color: #808080;">// The Concrete Mediator</span>
-<span style="color: #63b3ed;">public class</span> <span style="color: #4fd1c5;">Chatroom</span> : <span style="color: #4fd1c5;">IChatroom</span>
-{
-    <span style="color: #63b3ed;">private</span> Dictionary&lt;<span style="color: #63b3ed;">string</span>, <span style="color: #4fd1c5;">User</span>&gt; _users = <span style="color: #63b3ed;">new</span>();
-
-    <span style="color: #63b3ed;">public void</span> Register(<span style="color: #4fd1c5;">User</span> user)
-    {
-        _users[user.Name] = user;
-        user.SetChatroom(<span style="color: #63b3ed;">this</span>);
+<span style="color: #808080;">// Mediator</span>
+<span style="color: #63b3ed;">class</span> TrafficLight {
+  <span style="color: #FBBF24;">constructor</span>() {
+    <span style="color: #63b3ed;">this</span>.cars = [];
+  }
+  <span style="color: #FBBF24;">register</span>(car) {
+    <span style="color: #63b3ed;">this</span>.cars.push(car);
+  }
+  <span style="color: #FBBF24;">changeSignal</span>(color) {
+    console.log(`Traffic Light: ${color}`);
+    <span style="color: #63b3ed;">this</span>.cars.forEach(car => car.notify(color));
+  }
+}
+<span style="color: #808080;">// Colleague</span>
+<span style="color: #63b3ed;">class</span> Car {
+  <span style="color: #FBBF24;">constructor</span>(name) { <span style="color: #63b3ed;">this</span>.name = name; }
+  <span style="color: #FBBF24;">notify</span>(signal) {
+    <span style="color: #63b3ed;">if</span> (signal === "GREEN") {
+      console.log(`${this.name} 🚗 starts driving.`);
+    } <span style="color: #63b3ed;">else if</span> (signal === "RED") {
+      console.log(`${this.name} 🚗 stops.`);
     }
-
-    <span style="color: #63b3ed;">public void</span> SendMessage(<span style="color: #63b3ed;">string</span> message, <span style="color: #4fd1c5;">User</span> from)
-    {
-        <span style="color: #63b3ed;">foreach</span> (var user <span style="color: #63b3ed;">in</span> _users.Values)
-        {
-            <span style="color: #63b3ed;">if</span> (user != from) { user.Receive(message); }
-        }
-    }
+  }
 }
 <span style="color: #808080;">// Usage</span>
-<span style="color: #4fd1c5;">IChatroom</span> chatroom = <span style="color: #63b3ed;">new</span> <span style="color: #4fd1c5;">Chatroom</span>();
-<span style="color: #4fd1c5;">User</span> user1 = <span style="color: #63b3ed;">new</span> <span style="color: #4fd1c5;">User</span>(<span style="color: #9f7aea;">"Alice"</span>);
-<span style="color: #4fd1c5;">User</span> user2 = <span style="color: #63b3ed;">new</span> <span style="color: #4fd1c5;">User</span>(<span style="color: #9f7aea;">"Bob"</span>);
-chatroom.Register(user1);
-chatroom.Register(user2);
-user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="color: #808080;">// Bob receives the message</span>
+<span style="color: #63b3ed;">const</span> signal = <span style="color: #63b3ed;">new</span> TrafficLight();
+<span style="color: #63b3ed;">const</span> car1 = <span style="color: #63b3ed;">new</span> Car("Car A");
+signal.register(car1);
+signal.changeSignal("GREEN");
                 </div>
             </div>
         </div>
