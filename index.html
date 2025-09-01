@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mediator Design Pattern</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -70,10 +72,14 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             z-index: 10;
         }
-        .nav-button:hover {
+        .nav-button:hover:not(:disabled) {
             background-color: white;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         #prevBtn {
@@ -287,7 +293,30 @@
             </div>
         </div>
         
-        <!-- Slide 5: Why Mediator is Needed? -->
+        <!-- Slide 5: Core Concepts -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4 text-slate-700">Mediator Pattern: Core Concepts</h2>
+            <div class="space-y-4 text-slate-600">
+                <div>
+                    <h3 class="font-bold text-lg text-blue-600 mb-1">The Intent</h3>
+                    <p class="text-sm">To define an object that encapsulates how a set of objects interact. The Mediator promotes <b class="text-blue-500">loose coupling</b> by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-blue-600 mb-1">Core Motivation</h3>
+                    <p class="text-sm">As a system grows, direct communication between components can create a tangled web of relationships (spaghetti code). The Mediator acts as a central hub, untangling these connections. Instead of many objects talking to many others, they all communicate through one central point, simplifying the system's structure.</p>
+                </div>
+                 <div>
+                    <h3 class="font-bold text-lg text-blue-600 mb-1">When to Use It</h3>
+                     <ul class="list-disc list-inside text-sm space-y-1">
+                        <li>When a set of objects communicate in complex but well-defined ways.</li>
+                        <li>When reusing an object is difficult because it's tightly coupled with many other objects.</li>
+                        <li>When a behavior distributed among several classes should be customizable without extensive subclassing.</li>
+                     </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Why Mediator is Needed? -->
         <div class="slide">
              <h2 class="text-3xl font-bold mb-4 text-slate-700">Why Mediator is Needed?</h2>
              <p class="text-lg text-slate-600 mb-6">When objects communicate directly, dependencies proliferate, creating a complex web of connections that becomes a nightmare to manage. The Mediator pattern intervenes to simplify these relationships.</p>
@@ -310,7 +339,7 @@
              </div>
         </div>
         
-        <!-- Slide 6: Problem Without Mediator -->
+        <!-- Slide 7: Problem Without Mediator -->
         <div class="slide items-center slide-row">
             <div class="w-1/2 pr-8">
                  <h2 class="text-3xl font-bold mb-4 text-slate-700">Problem Without Mediator</h2>
@@ -326,7 +355,7 @@
             </div>
         </div>
 
-        <!-- Slide 7: Real-life Example -->
+        <!-- Slide 8: Real-life Example -->
          <div class="slide">
              <h2 class="text-3xl font-bold mb-4 text-slate-700 text-center">Real-life Example: Air Traffic Control</h2>
              <p class="text-lg text-slate-600 mb-6 text-center">An excellent analogy for the Mediator pattern is an Air Traffic Controller (ATC), who manages all communication between pilots.</p>
@@ -349,47 +378,51 @@
              </div>
         </div>
         
-        <!-- Slide 8: Structure Part 1 -->
+        <!-- Slide 9: Structure Part 1: The Mediator Roles -->
         <div class="slide slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 1: The Mediator</h2>
-                <div class="space-y-4">
+                <div class="space-y-4 text-sm">
                     <div class="bg-white p-4 rounded-lg shadow-sm">
                         <h3 class="font-bold text-lg text-blue-500 mb-2">1. Mediator Interface</h3>
-                        <p class="text-sm text-slate-600">This interface defines the contract for communication. It declares methods that Colleague objects use to send messages, ensuring all mediators have a consistent API.</p>
+                        <p class="mb-2">This is the contract for communication. It defines the methods Colleagues will use to interact with the Mediator.</p>
+                        <p class="border-t pt-2 mt-2 text-xs text-slate-500"><b>Analogy:</b> The official rulebook for air traffic communication. It specifies standard commands like 'request takeoff' but doesn't actually manage planes.</p>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-sm">
                         <h3 class="font-bold text-lg text-blue-500 mb-2">2. Concrete Mediator</h3>
-                        <p class="text-sm text-slate-600">This class implements the Mediator interface and contains the complex logic for coordinating Colleagues. It holds references to all Colleague objects to route communication between them.</p>
+                        <p class="mb-2">The actual implementation that centralizes communication. It knows about all the Colleagues and contains the logic to route messages between them.</p>
+                        <p class="border-t pt-2 mt-2 text-xs text-slate-500"><b>Analogy:</b> The Air Traffic Control Tower. It uses the rulebook to manage all planes in its airspace, preventing collisions and coordinating traffic.</p>
                     </div>
                 </div>
             </div>
             <div class="w-1/2 flex justify-center items-center">
-                <img src="https://placehold.co/400x300/A5B4FC/1E293B?text=Mediator+Roles" alt="Diagram of Mediator Roles" class="rounded-lg shadow-xl">
+                 <img src="https://placehold.co/400x300/A5B4FC/1E293B?text=Control+Tower+(Mediator)" alt="Diagram of a control tower" class="rounded-lg shadow-xl">
             </div>
         </div>
 
-        <!-- Slide 9: Structure Part 2 -->
+        <!-- Slide 10: Structure Part 2: The Colleague Roles -->
         <div class="slide slide-row">
              <div class="w-1/2 pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 2: The Colleagues</h2>
-                <div class="space-y-4">
+                <div class="space-y-4 text-sm">
                     <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-lg text-pink-500 mb-2">3. Colleague Interface</h3>
-                        <p class="text-sm text-slate-600">This defines the contract for all Colleague objects. It typically includes a reference to their Mediator, allowing them to communicate with it.</p>
+                        <h3 class="font-bold text-lg text-pink-500 mb-2">3. Colleague</h3>
+                        <p class="mb-2">An interface or abstract class defining how individual objects communicate with the Mediator. Each colleague holds a reference to its mediator.</p>
+                        <p class="border-t pt-2 mt-2 text-xs text-slate-500"><b>Analogy:</b> The role of a 'Pilot'. The definition includes having a radio and knowing the procedures to talk to the control tower, but it isn't a specific person.</p>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-sm">
                         <h3 class="font-bold text-lg text-pink-500 mb-2">4. Concrete Colleagues</h3>
-                        <p class="text-sm text-slate-600">These are the individual components of the system. Each Colleague only knows about its Mediator and communicates indirectly with other Colleagues through it.</p>
+                        <p class="mb-2">The actual objects in the system. They send their messages to the Mediator, which then decides what to do. They have no direct knowledge of each other.</p>
+                        <p class="border-t pt-2 mt-2 text-xs text-slate-500"><b>Analogy:</b> The individual airplanes (Flight AA123, Flight UA456). They don't talk to each other directly; they talk to the tower.</p>
                     </div>
                 </div>
             </div>
             <div class="w-1/2 flex justify-center items-center">
-                 <img src="https://placehold.co/400x300/F9A8D4/1E293B?text=Colleague+Roles" alt="Diagram of Colleague Roles" class="rounded-lg shadow-xl">
+                 <img src="https://placehold.co/400x300/F9A8D4/1E293B?text=Airplanes+(Colleagues)" alt="Diagram of airplanes" class="rounded-lg shadow-xl">
             </div>
         </div>
 
-        <!-- Slide 10: Code Example 1: Participants -->
+        <!-- Slide 11: Code Example 1: Participants -->
         <div class="slide slide-row">
             <div class="w-2/5 pr-8">
                  <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 1: The Participants</h2>
@@ -425,7 +458,7 @@
             </div>
         </div>
         
-        <!-- Slide 11: Code Example 2: Mediator & Usage -->
+        <!-- Slide 12: Code Example 2: Mediator & Usage -->
         <div class="slide slide-row">
             <div class="w-2/5 pr-8">
                  <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 2: The Mediator</h2>
@@ -464,7 +497,7 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
             </div>
         </div>
 
-        <!-- Slide 12: Advantages & Disadvantages -->
+        <!-- Slide 13: Advantages & Disadvantages -->
         <div class="slide slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-2xl font-bold mb-4 text-green-600">Advantages</h2>
@@ -485,7 +518,7 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
             </div>
         </div>
         
-        <!-- Slide 13: Concrete Example: GUI Form -->
+        <!-- Slide 14: Concrete Example: GUI Form -->
         <div class="slide slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-slate-700">A Concrete Example: GUI Form</h2>
@@ -515,30 +548,30 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
             </div>
         </div>
 
-        <!-- Slide 14: Practical Applications -->
+        <!-- Slide 15: Practical Applications -->
         <div class="slide">
-            <h2 class="text-3xl font-bold mb-6 text-slate-700 text-center">Practical Applications</h2>
+            <h2 class="text-3xl font-bold mb-6 text-center text-slate-700">Practical Applications</h2>
             <p class="text-lg text-slate-600 mb-8 text-center">The Mediator pattern is ideal for scenarios with complex communication between multiple objects.</p>
             <div class="icon-card-container">
                 <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
                     <h3 class="font-semibold text-md">GUI Components</h3>
                     <p class="text-xs text-slate-500">Coordinating interactions between various UI elements like buttons, text fields, and lists in a dialog box.</p>
                 </div>
                 <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     <h3 class="font-semibold text-md">Chat Applications</h3>
                     <p class="text-xs text-slate-500">A central server (mediator) manages communication between all users (colleagues).</p>
                 </div>
                 <div class="icon-card">
-                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
                     <h3 class="font-semibold text-md">Scheduling Systems</h3>
                     <p class="text-xs text-slate-500">A central scheduler coordinates tasks and resources without them needing to know about each other.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 15: Conclusion -->
+        <!-- Slide 16: Conclusion -->
         <div class="slide text-center">
             <h2 class="text-4xl font-bold mb-6 text-slate-700">Conclusion</h2>
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">The Mediator pattern is a powerful tool for simplifying complex communication webs, promoting loose coupling and creating more maintainable and scalable systems.</p>
@@ -571,10 +604,6 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
             function updateNav() {
                 prevBtn.disabled = currentSlide === 0;
                 nextBtn.disabled = currentSlide === slides.length - 1;
-                prevBtn.style.opacity = prevBtn.disabled ? '0.5' : '1';
-                prevBtn.style.cursor = prevBtn.disabled ? 'not-allowed' : 'pointer';
-                nextBtn.style.opacity = nextBtn.disabled ? '0.5' : '1';
-                nextBtn.style.cursor = nextBtn.disabled ? 'not-allowed' : 'pointer';
                 slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
             }
 
