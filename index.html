@@ -105,7 +105,7 @@
 
         /* Slide-specific styles */
         .slide-title-1 {
-             background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+            background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
         }
         .slide-title-1 h1 {
             font-size: 3.5rem; /* Adjusted font size */
@@ -217,14 +217,12 @@
 <body>
 
     <div class="presentation-container">
-        <!-- Slide 1: Title -->
         <div class="slide active slide-title-1 text-center">
             <h1 class="mb-4">Mediator Design Pattern</h1>
             <p class="mb-8">Streamlining Object Interactions</p>
             <p class="text-lg text-white/80">Presented by Chirag</p>
         </div>
 
-        <!-- Slide 2: Agenda -->
         <div class="slide">
             <h2 class="text-3xl font-bold mb-6 text-center text-slate-700">Agenda</h2>
             <ul class="agenda-list">
@@ -240,30 +238,28 @@
             </ul>
         </div>
 
-        <!-- Slide 3: Introduction -->
         <div class="slide">
              <h2 class="text-3xl font-bold mb-4 text-slate-700">Introduction to Design Patterns</h2>
              <p class="text-lg text-slate-600 mb-6">Design patterns are reusable solutions to common problems in software design. They are not direct code but descriptions of how to solve recurring issues, acting as blueprints that can be customized to solve specific problems.</p>
              <div class="icon-card-container">
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M17 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M6 9.5V12"/><path d="M12 6.5v8"/><path d="M18 9.5V12"/><path d="M9.5 6H12"/><path d="M14.5 18H12"/><path d="M9.5 18H7"/><path d="m14.5 6-2.5 2.5"/><path d="m9.5 12-2.5 2.5"/></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M17 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M6 9.5V12"/><path d="M12 6.5v8"/><path d="M18 9.5V12"/><path d="M9.5 6H12"/><path d="M14.5 18H12"/><path d="M9.5 18H7"/><path d="m14.5 6-2.5 2.5"/><path d="m9.5 12-2.5 2.5"/></svg>
                      <h3 class="font-semibold text-md">Common Vocabulary</h3>
                      <p class="text-xs text-slate-500">Facilitate communication among developers.</p>
                  </div>
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m16 8-4 4-4-4"/><path d="m16 14-4-4-4 4"/></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m16 8-4 4-4-4"/><path d="m16 14-4-4-4 4"/></svg>
                      <h3 class="font-semibold text-md">Avoid Reinvention</h3>
                      <p class="text-xs text-slate-500">Prevent solving the same problems repeatedly.</p>
                  </div>
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
                      <h3 class="font-semibold text-md">Improve Quality</h3>
                      <p class="text-xs text-slate-500">Lead to more robust and maintainable systems.</p>
                  </div>
              </div>
         </div>
 
-        <!-- Slide 4: What is Mediator? -->
         <div class="slide items-center slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-slate-700">What is the Mediator Pattern?</h2>
@@ -275,25 +271,62 @@
                 </ul>
             </div>
             <div class="w-1/2">
-                <!-- Visual representation of Mediator -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="flex justify-center items-center scale-90">
-                        <div class="relative">
-                            <div class="w-20 h-20 bg-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg text-center leading-tight">Mediator</div>
-                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64">
-                                <!-- Colleague nodes -->
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-12 h-12 bg-purple-300 rounded-full shadow"></div>
-                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-12 h-12 bg-purple-300 rounded-full shadow"></div>
-                                <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full w-12 h-12 bg-purple-300 rounded-full shadow"></div>
-                                <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full w-12 h-12 bg-purple-300 rounded-full shadow"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg flex justify-center items-center h-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" font-family="Poppins, sans-serif" font-size="14">
+                        <defs>
+                            <style>
+                                .box { fill: #ffffff; stroke: #94a3b8; stroke-width: 1.5; rx: 8; ry: 8; }
+                                .interface { font-style: italic; }
+                                .class-name { font-weight: 600; fill: #1e293b; font-size: 16px; }
+                                .method-name { fill: #475569; font-size: 14px; }
+                                .arrow-line { stroke: #475569; stroke-width: 1.5; }
+                                .inherit-arrow-head { fill: #ffffff; stroke: #475569; stroke-width: 1.5; }
+                                .assoc-arrow-head { fill: none; stroke: #475569; stroke-width: 1.5; }
+                                .label { font-size: 13px; fill: #64748b; font-weight: 500; }
+                            </style>
+                            <marker id="inheritArrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                                <path d="M 0 0 L 10 5 L 0 10 z" class="inherit-arrow-head"/>
+                            </marker>
+                            <marker id="assocArrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                                <path d="M 0 5 L 10 5 L 7 2 M 10 5 L 7 8" class="assoc-arrow-head"/>
+                            </marker>
+                        </defs>
+                        <title>Mediator Pattern Structure</title>
+                        <g transform="translate(50, 50)">
+                            <rect class="box" width="220" height="80"/>
+                            <text x="110" y="30" text-anchor="middle" class="class-name interface">&lt;&lt;Mediator&gt;&gt;</text>
+                            <line x1="10" y1="40" x2="210" y2="40" stroke="#e2e8f0"/>
+                            <text x="20" y="65" class="method-name interface">+ Notify(sender, event)</text>
+                        </g>
+                        <g transform="translate(50, 220)">
+                            <rect class="box" width="220" height="90"/>
+                            <text x="110" y="30" text-anchor="middle" class="class-name">ConcreteMediator</text>
+                            <line x1="10" y1="40" x2="210" y2="40" stroke="#e2e8f0"/>
+                            <text x="20" y="65" class="method-name">- colleagues[]: Colleague</text>
+                        </g>
+                        <g transform="translate(380, 50)">
+                            <rect class="box" width="220" height="80"/>
+                            <text x="110" y="30" text-anchor="middle" class="class-name interface">&lt;&lt;Colleague&gt;&gt;</text>
+                            <line x1="10" y1="40" x2="210" y2="40" stroke="#e2e8f0"/>
+                            <text x="20" y="65" class="method-name"># mediator: Mediator</text>
+                        </g>
+                        <g transform="translate(380, 220)">
+                            <rect class="box" width="220" height="90"/>
+                            <text x="110" y="30" text-anchor="middle" class="class-name">ConcreteColleague</text>
+                            <line x1="10" y1="40" x2="210" y2="40" stroke="#e2e8f0"/>
+                            <text x="20" y="65" class="method-name">+ Operation()</text>
+                        </g>
+                        <line class="arrow-line" x1="160" y1="130" x2="160" y2="220" marker-end="url(#inheritArrow)"/>
+                        <line class="arrow-line" x1="490" y1="130" x2="490" y2="220" marker-end="url(#inheritArrow)"/>
+                        <line class="arrow-line" x1="380" y1="90" x2="270" y2="90" marker-end="url(#assocArrow)"/>
+                        <text x="305" y="80" class="label">uses</text>
+                        <line class="arrow-line" x1="270" y1="265" x2="380" y2="265" marker-end="url(#assocArrow)"/>
+                        <text x="305" y="255" class="label">manages</text>
+                    </svg>
                 </div>
             </div>
         </div>
         
-        <!-- Slide 5: Core Concepts -->
         <div class="slide">
             <h2 class="text-3xl font-bold mb-4 text-slate-700">Mediator Pattern: Core Concepts</h2>
             <div class="space-y-4 text-slate-600">
@@ -308,38 +341,36 @@
                  <div>
                     <h3 class="font-bold text-lg text-blue-600 mb-1">When to Use It</h3>
                      <ul class="list-disc list-inside text-sm space-y-1">
-                        <li>When a set of objects communicate in complex but well-defined ways.</li>
-                        <li>When reusing an object is difficult because it's tightly coupled with many other objects.</li>
-                        <li>When a behavior distributed among several classes should be customizable without extensive subclassing.</li>
+                         <li>When a set of objects communicate in complex but well-defined ways.</li>
+                         <li>When reusing an object is difficult because it's tightly coupled with many other objects.</li>
+                         <li>When a behavior distributed among several classes should be customizable without extensive subclassing.</li>
                      </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 6: Why Mediator is Needed? -->
         <div class="slide">
              <h2 class="text-3xl font-bold mb-4 text-slate-700">Why Mediator is Needed?</h2>
              <p class="text-lg text-slate-600 mb-6">When objects communicate directly, dependencies proliferate, creating a complex web of connections that becomes a nightmare to manage. The Mediator pattern intervenes to simplify these relationships.</p>
              <div class="icon-card-container">
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m16 8-4 4-4-4"/><path d="m16 14-4-4-4 4"/></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m16 8-4 4-4-4"/><path d="m16 14-4-4-4 4"/></svg>
                      <h3 class="font-semibold text-md">Reduces Tight Coupling</h3>
                      <p class="text-xs text-slate-500">Minimizes direct knowledge objects have of each other.</p>
                  </div>
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M4.93 4.93 9.17 9.17"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83 4.24 4.24"/><path d="M4.93 19.07 9.17 14.83"/></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M4.93 4.93 9.17 9.17"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83 4.24 4.24"/><path d="M4.93 19.07 9.17 14.83"/></svg>
                      <h3 class="font-semibold text-md">Simplifies Relationships</h3>
                      <p class="text-xs text-slate-500">Transforms many-to-many into one-to-many.</p>
                  </div>
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18"/><path d="M9 22V9"/></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18"/><path d="M9 22V9"/></svg>
                      <h3 class="font-semibold text-md">Cleaner Architecture</h3>
                      <p class="text-xs text-slate-500">Promotes a more organized and understandable system.</p>
                  </div>
              </div>
         </div>
         
-        <!-- Slide 7: Problem Without Mediator -->
         <div class="slide items-center slide-row">
             <div class="w-1/2 pr-8">
                  <h2 class="text-3xl font-bold mb-4 text-slate-700">Problem Without Mediator</h2>
@@ -355,11 +386,9 @@
             </div>
         </div>
 
-        <!-- Slide 8: Communication Flow Diagram -->
         <div class="slide items-center">
             <h2 class="text-3xl font-bold mb-6 text-center text-slate-700">Communication Flow</h2>
             <div class="flex justify-around items-start w-full">
-                <!-- Without Mediator -->
                 <div class="w-2/5 text-center">
                     <h3 class="font-bold text-lg mb-4 text-red-600">Without Mediator</h3>
                     <div class="relative h-48">
@@ -374,7 +403,6 @@
                     </div>
                     <p class="text-sm text-slate-600 mt-4">Objects are tightly coupled, creating a "spaghetti" of connections.</p>
                 </div>
-                <!-- With Mediator -->
                 <div class="w-2/5 text-center">
                     <h3 class="font-bold text-lg mb-4 text-green-600">With Mediator</h3>
                     <div class="relative h-48">
@@ -382,16 +410,15 @@
                         <div class="absolute bottom-0 left-0 bg-blue-100 text-blue-800 p-2 rounded">Component A</div>
                         <div class="absolute bottom-0 right-0 bg-blue-100 text-blue-800 p-2 rounded">Component B</div>
                          <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                            <path d="M50 15 L20 85" stroke="green" stroke-width="1" fill="none"/>
-                            <path d="M50 15 L80 85" stroke="green" stroke-width="1" fill="none"/>
-                        </svg>
+                             <path d="M50 15 L20 85" stroke="green" stroke-width="1" fill="none"/>
+                             <path d="M50 15 L80 85" stroke="green" stroke-width="1" fill="none"/>
+                         </svg>
                     </div>
                      <p class="text-sm text-slate-600 mt-4">Objects communicate indirectly through the Mediator, simplifying the system.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 9: Structure Part 1: The Mediator Roles -->
         <div class="slide slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 1: The Mediator</h2>
@@ -411,7 +438,6 @@
             </div>
         </div>
 
-        <!-- Slide 10: Structure Part 2: The Colleague Roles -->
         <div class="slide slide-row">
              <div class="w-1/2 pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 2: The Colleagues</h2>
@@ -431,7 +457,6 @@
             </div>
         </div>
 
-        <!-- Slide 11: Real-life Analogy -->
         <div class="slide">
             <h2 class="text-3xl font-bold mb-4 text-slate-700">🔹 Real-Life Analogy: Air Traffic Control (ATC)</h2>
             <p class="text-md text-slate-600 mb-6">Think of an airport’s Air Traffic Control Tower (ATC) as the Mediator:</p>
@@ -448,7 +473,6 @@
             </div>
         </div>
 
-        <!-- Slide 12: Code Example 1: Participants -->
         <div class="slide slide-row">
             <div class="w-2/5 pr-8">
                  <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 1: The Participants</h2>
@@ -484,7 +508,6 @@
             </div>
         </div>
         
-        <!-- Slide 13: Code Example 2: Mediator & Usage -->
         <div class="slide slide-row">
             <div class="w-2/5 pr-8">
                  <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example 2: The Mediator</h2>
@@ -523,7 +546,6 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
             </div>
         </div>
 
-        <!-- Slide 14: Advantages & Disadvantages -->
         <div class="slide slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-2xl font-bold mb-4 text-green-600">Advantages</h2>
@@ -537,14 +559,13 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
             <div class="w-1/2 pl-8 border-l border-slate-300">
                 <h2 class="text-2xl font-bold mb-4 text-red-600">Disadvantages</h2>
                  <ul class="list-disc list-inside space-y-2 text-slate-700 text-sm">
-                    <li><b>Mediator Complexity (God Object):</b> The mediator can become overly complex and monolithic if it handles too much logic.</li>
-                    <li><b>Performance Bottleneck:</b> All communication passes through the mediator, which can become a bottleneck in high-throughput systems.</li>
-                    <li><b>Difficult to Maintain:</b> A large, complex mediator can become difficult to maintain over time.</li>
-                </ul>
+                     <li><b>Mediator Complexity (God Object):</b> The mediator can become overly complex and monolithic if it handles too much logic.</li>
+                     <li><b>Performance Bottleneck:</b> All communication passes through the mediator, which can become a bottleneck in high-throughput systems.</li>
+                     <li><b>Difficult to Maintain:</b> A large, complex mediator can become difficult to maintain over time.</li>
+                 </ul>
             </div>
         </div>
         
-        <!-- Slide 15: Concrete Example: GUI Form -->
         <div class="slide slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-slate-700">A Concrete Example: GUI Form</h2>
@@ -574,7 +595,6 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
             </div>
         </div>
 
-        <!-- Slide 16: Practical Applications -->
         <div class="slide">
             <h2 class="text-3xl font-bold mb-6 text-center text-slate-700">Practical Applications</h2>
             <p class="text-lg text-slate-600 mb-8 text-center">The Mediator pattern is ideal for scenarios with complex communication between multiple objects.</p>
@@ -597,7 +617,6 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
             </div>
         </div>
 
-        <!-- Slide 17: Conclusion -->
         <div class="slide text-center">
             <h2 class="text-4xl font-bold mb-6 text-slate-700">Conclusion</h2>
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">The Mediator pattern is a powerful tool for simplifying complex communication webs, promoting loose coupling and creating more maintainable and scalable systems.</p>
@@ -605,7 +624,6 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
         </div>
 
 
-        <!-- Navigation -->
         <button id="prevBtn" class="nav-button">&larr; Prev</button>
         <button id="nextBtn" class="nav-button">Next &rarr;</button>
         <div id="slideCounter" class="slide-counter"></div>
@@ -658,4 +676,3 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
     </script>
 </body>
 </html>
-
