@@ -386,53 +386,53 @@
             </div>
         </div>
 
-      <div class="slide items-center">
+     <div class="slide items-center">
   <h2 class="text-3xl font-bold mb-6 text-center text-slate-700">Mediator Pattern Structure</h2>
   <div class="flex justify-center items-center w-full">
     <div class="relative w-3/4 h-72">
       <!-- Mediator -->
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-yellow-100 text-yellow-800 p-3 rounded font-bold shadow">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded font-semibold shadow">
         Mediator (Interface)
       </div>
 
       <!-- Concrete Mediator -->
-      <div class="absolute top-16 left-1/2 -translate-x-1/2 bg-green-100 text-green-800 p-3 rounded font-bold shadow">
+      <div class="absolute top-16 left-1/2 -translate-x-1/2 bg-green-100 text-green-800 px-4 py-2 rounded font-semibold shadow">
         Concrete Mediator
       </div>
 
       <!-- Colleague A -->
-      <div class="absolute bottom-0 left-0 bg-blue-100 text-blue-800 p-2 rounded shadow">
+      <div class="absolute bottom-0 left-1/6 bg-blue-100 text-blue-800 px-4 py-2 rounded shadow">
         Colleague A
       </div>
 
       <!-- Colleague B -->
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-blue-100 text-blue-800 p-2 rounded shadow">
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-blue-100 text-blue-800 px-4 py-2 rounded shadow">
         Colleague B
       </div>
 
       <!-- Colleague C -->
-      <div class="absolute bottom-0 right-0 bg-blue-100 text-blue-800 p-2 rounded shadow">
+      <div class="absolute bottom-0 right-1/6 bg-blue-100 text-blue-800 px-4 py-2 rounded shadow">
         Colleague C
       </div>
 
       <!-- Lines -->
       <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
         <!-- Mediator -> Concrete Mediator -->
-        <path d="M50 10 L50 28" stroke="black" stroke-width="1.5" marker-end="url(#arrow)" />
+        <path d="M50 12 L50 28" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)" />
 
         <!-- Concrete Mediator -> Colleague A -->
-        <path d="M50 40 L20 85" stroke="green" stroke-width="1.5" marker-end="url(#arrow)" />
+        <path d="M50 40 L20 85" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)" />
 
         <!-- Concrete Mediator -> Colleague B -->
-        <path d="M50 40 L50 85" stroke="green" stroke-width="1.5" marker-end="url(#arrow)" />
+        <path d="M50 40 L50 85" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)" />
 
         <!-- Concrete Mediator -> Colleague C -->
-        <path d="M50 40 L80 85" stroke="green" stroke-width="1.5" marker-end="url(#arrow)" />
+        <path d="M50 40 L80 85" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)" />
 
-        <!-- Arrow Marker Definition -->
+        <!-- Arrow Marker -->
         <defs>
           <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L6,3 z" fill="black" />
+            <path d="M0,0 L0,6 L6,3 z" fill="#555" />
           </marker>
         </defs>
       </svg>
@@ -442,6 +442,7 @@
     The Mediator defines communication rules. Concrete Mediator coordinates interaction between Colleagues (A, B, C).
   </p>
 </div>
+
 
 
         <div class="slide slide-row">
@@ -701,3 +702,4 @@ user1.Send(<span style="color: #9f7aea;">"Hello Bob!"</span>); <span style="colo
     </script>
 </body>
 </html>
+
