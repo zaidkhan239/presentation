@@ -35,7 +35,7 @@
         .slide {
             display: none;
             flex-grow: 1;
-            padding: 4rem;
+            padding: 3rem; /* Reduced padding */
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             animation: fadeIn 0.5s ease-in-out;
         }
@@ -48,6 +48,7 @@
         
         .slide.active.slide-row {
             flex-direction: row;
+            align-items: center;
         }
 
         @keyframes fadeIn {
@@ -101,53 +102,65 @@
              background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
         }
         .slide-title-1 h1 {
-            font-size: 4rem;
+            font-size: 3.5rem; /* Adjusted font size */
             font-weight: 700;
             color: white;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
         }
         .slide-title-1 p {
-            font-size: 1.5rem;
+            font-size: 1.25rem; /* Adjusted font size */
             color: #f0f4f8;
         }
 
         .agenda-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem 2rem;
+            gap: 0.75rem 1.5rem; /* Adjusted gap */
         }
         .agenda-list li {
             background-color: rgba(255, 255, 255, 0.5);
-            padding: 1rem;
+            padding: 0.75rem; /* Adjusted padding */
             border-radius: 0.5rem;
             display: flex;
             align-items: center;
+            font-size: 0.9rem; /* Adjusted font size */
         }
         .agenda-list .number {
-            font-size: 1.25rem;
+            font-size: 1rem; /* Adjusted font size */
             font-weight: 700;
             color: #66a6ff;
-            margin-right: 1rem;
+            margin-right: 0.75rem;
         }
 
         .icon-card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
         .icon-card {
             background-color: white;
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 1rem;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
          .icon-card svg {
-            width: 3rem;
-            height: 3rem;
-            margin: 0 auto 1rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: 0 auto 0.75rem;
             color: #66a6ff;
+        }
+        
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+            white-space: pre;
         }
 
         /* Responsive Styles */
@@ -162,7 +175,7 @@
 
             .slide {
                 padding: 2rem 1.5rem;
-                overflow-y: auto;
+                overflow-y: auto; /* Re-enable for mobile where it's necessary */
             }
 
             .slide.active {
@@ -171,8 +184,8 @@
 
             .slide-title-1 h1 { font-size: 2.5rem; }
             .slide-title-1 p { font-size: 1.1rem; }
-            h2.text-4xl { font-size: 2rem !important; } /* Using important to override tailwind */
-            p.text-xl { font-size: 1rem !important; }
+            h2 { font-size: 1.75rem !important; } 
+            p, ul li { font-size: 0.95rem !important; }
 
             .agenda-list {
                 grid-template-columns: 1fr;
@@ -183,14 +196,13 @@
             #nextBtn { right: 1rem; }
             .slide-counter { bottom: 1.25rem; }
 
-            /* Fix for two-column layouts on mobile */
             .slide.active.slide-row {
                 flex-direction: column;
             }
             .slide.active.slide-row > div {
-                width: 100% !important; /* Override tailwind w-1/2 */
+                width: 100% !important; 
                 padding-right: 0 !important;
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
             }
         }
 
@@ -208,7 +220,7 @@
 
         <!-- Slide 2: Agenda -->
         <div class="slide">
-            <h2 class="text-4xl font-bold mb-8 text-center text-slate-700">Agenda</h2>
+            <h2 class="text-3xl font-bold mb-6 text-center text-slate-700">Agenda</h2>
             <ul class="agenda-list">
                 <li><span class="number">01</span> Introduction to Design Patterns</li>
                 <li><span class="number">02</span> Mediator Pattern Overview</li>
@@ -224,33 +236,117 @@
 
         <!-- Slide 3: Introduction -->
         <div class="slide">
-             <h2 class="text-4xl font-bold mb-4 text-slate-700">Introduction to Design Patterns</h2>
-             <p class="text-xl text-slate-600 mb-8">Design patterns are reusable solutions to common problems in software design. They are not direct code but descriptions of how to solve recurring issues, acting as blueprints that can be customized to solve specific problems.</p>
+             <h2 class="text-3xl font-bold mb-4 text-slate-700">Introduction to Design Patterns</h2>
+             <p class="text-lg text-slate-600 mb-6">Design patterns are reusable solutions to common problems in software design. They are not direct code but descriptions of how to solve recurring issues, acting as blueprints that can be customized to solve specific problems.</p>
              <div class="icon-card-container">
                  <div class="icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M17 14.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M7 6.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M6 9.5V12"/><path d="M12 6.5v8"/><path d="M18 9.5V12"/><path d="M9.5 6H12"/><path d="M14.5 18H12"/><path d="M9.5 18H7"/><path d="m14.5 6-2.5 2.5"/><path d="m9.5 12-2.5 2.5"/></svg>
-                     <h3 class="font-semibold text-lg">Common Vocabulary</h3>
-                     <p class="text-sm text-slate-500">Facilitate communication among developers.</p>
+                     <h3 class="font-semibold text-md">Common Vocabulary</h3>
+                     <p class="text-xs text-slate-500">Facilitate communication among developers.</p>
                  </div>
                  <div class="icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m16 8-4 4-4-4"/><path d="m16 14-4-4-4 4"/></svg>
-                     <h3 class="font-semibold text-lg">Avoid Reinvention</h3>
-                     <p class="text-sm text-slate-500">Prevent solving the same problems repeatedly.</p>
+                     <h3 class="font-semibold text-md">Avoid Reinvention</h3>
+                     <p class="text-xs text-slate-500">Prevent solving the same problems repeatedly.</p>
                  </div>
                  <div class="icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                     <h3 class="font-semibold text-lg">Improve Quality</h3>
-                     <p class="text-sm text-slate-500">Lead to more robust and maintainable systems.</p>
+                     <h3 class="font-semibold text-md">Improve Quality</h3>
+                     <p class="text-xs text-slate-500">Lead to more robust and maintainable systems.</p>
                  </div>
              </div>
         </div>
 
-        <!-- Slide 4: What is Mediator? -->
+        <!-- Slide 4: Structure Part 1 -->
+        <div class="slide slide-row">
+            <div class="w-1/2 pr-8">
+                <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 1: The Mediator</h2>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg text-blue-500 mb-2">1. Mediator Interface</h3>
+                        <p class="text-sm text-slate-600">This interface defines the contract for communication. It declares methods that Colleague objects use to send messages, ensuring all mediators have a consistent API.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg text-blue-500 mb-2">2. Concrete Mediator</h3>
+                        <p class="text-sm text-slate-600">This class implements the Mediator interface and contains the complex logic for coordinating Colleagues. It holds references to all Colleague objects to route communication between them.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2 flex justify-center items-center">
+                <img src="https://placehold.co/400x300/A5B4FC/1E293B?text=Mediator+Roles" alt="Diagram of Mediator Roles" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+
+        <!-- Slide 5: Structure Part 2 -->
+        <div class="slide slide-row">
+             <div class="w-1/2 pr-8">
+                <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 2: The Colleagues</h2>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg text-pink-500 mb-2">3. Colleague Interface</h3>
+                        <p class="text-sm text-slate-600">This defines the contract for all Colleague objects. It typically includes a reference to their Mediator, allowing them to communicate with it.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg text-pink-500 mb-2">4. Concrete Colleagues</h3>
+                        <p class="text-sm text-slate-600">These are the individual components of the system. Each Colleague only knows about its Mediator and communicates indirectly with other Colleagues through it.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2 flex justify-center items-center">
+                 <img src="https://placehold.co/400x300/F9A8D4/1E293B?text=Colleague+Roles" alt="Diagram of Colleague Roles" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+
+        <!-- Slide 6: Code Example -->
+        <div class="slide slide-row">
+            <div class="w-2/5 pr-8">
+                 <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example: Chatroom</h2>
+                 <p class="text-sm text-slate-600 mb-4">Here's a simple JavaScript example. The <code class="bg-slate-200 text-sm px-1 rounded">Chatroom</code> is the <strong>Mediator</strong>, and each <code class="bg-slate-200 text-sm px-1 rounded">User</code> is a <strong>Colleague</strong>.</p>
+                 <p class="text-sm text-slate-600">Users don't know about each other; they only send messages to the chatroom. The chatroom then broadcasts the message to all other users.</p>
+            </div>
+            <div class="w-3/5">
+                <div class="code-block">
+<span style="color: #63b3ed;">// The Colleague</span>
+class User {
+  constructor(name, chatroom) {
+    this.name = name;
+    this.chatroom = chatroom;
+  }
+  send(message) {
+    this.chatroom.sendMessage(message, this);
+  }
+  receive(message, from) {
+    console.log(`${from.name} to ${this.name}: ${message}`);
+  }
+}
+
+<span style="color: #63b3ed;">// The Mediator</span>
+class Chatroom {
+  constructor() {
+    this.users = {};
+  }
+  register(user) {
+    this.users[user.name] = user;
+    user.chatroom = this;
+  }
+  sendMessage(message, from) {
+    for (let key in this.users) {
+      if (this.users[key] !== from) {
+        this.users[key].receive(message, from);
+      }
+    }
+  }
+}
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: What is Mediator? -->
         <div class="slide items-center slide-row">
             <div class="w-1/2 pr-8">
-                <h2 class="text-4xl font-bold mb-4 text-slate-700">What is the Mediator Pattern?</h2>
-                <p class="text-lg text-slate-600 mb-6">The Mediator pattern is a behavioral design pattern that defines an object (the mediator) that encapsulates how a set of objects (colleagues) interact. Instead of direct communication, colleagues interact through the mediator.</p>
-                <ul class="list-disc list-inside space-y-2 text-slate-600">
+                <h2 class="text-3xl font-bold mb-4 text-slate-700">What is the Mediator Pattern?</h2>
+                <p class="text-base text-slate-600 mb-4">The Mediator pattern is a behavioral design pattern that defines an object (the mediator) that encapsulates how a set of objects (colleagues) interact. Instead of direct communication, colleagues interact through the mediator.</p>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 text-sm">
                     <li><b>Promotes Loose Coupling:</b> Objects don't need to know about each other.</li>
                     <li><b>Centralizes Logic:</b> Communication logic is managed in one place.</li>
                     <li><b>Easier Maintenance:</b> Changes to interaction logic are isolated.</li>
@@ -259,7 +355,7 @@
             <div class="w-1/2">
                 <!-- Visual representation of Mediator -->
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="flex justify-center items-center">
+                    <div class="flex justify-center items-center scale-90">
                         <div class="relative">
                             <div class="w-20 h-20 bg-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg text-center leading-tight">Mediator</div>
                             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64">
@@ -275,35 +371,35 @@
             </div>
         </div>
         
-        <!-- Slide 5: Why Mediator is Needed? -->
+        <!-- Slide 8: Why Mediator is Needed? -->
         <div class="slide">
-             <h2 class="text-4xl font-bold mb-4 text-slate-700">Why Mediator is Needed?</h2>
-             <p class="text-xl text-slate-600 mb-8">When objects communicate directly, dependencies proliferate, creating a complex web of connections that becomes a nightmare to manage. The Mediator pattern intervenes to simplify these relationships.</p>
+             <h2 class="text-3xl font-bold mb-4 text-slate-700">Why Mediator is Needed?</h2>
+             <p class="text-lg text-slate-600 mb-6">When objects communicate directly, dependencies proliferate, creating a complex web of connections that becomes a nightmare to manage. The Mediator pattern intervenes to simplify these relationships.</p>
              <div class="icon-card-container">
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m16 8-4 4-4-4"/><path d="m16 14-4-4-4 4"/></svg>
-                     <h3 class="font-semibold text-lg">Reduces Tight Coupling</h3>
-                     <p class="text-sm text-slate-500">Minimizes direct knowledge objects have of each other.</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m16 8-4 4-4-4"/><path d="m16 14-4-4-4 4"/></svg>
+                     <h3 class="font-semibold text-md">Reduces Tight Coupling</h3>
+                     <p class="text-xs text-slate-500">Minimizes direct knowledge objects have of each other.</p>
                  </div>
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M4.93 4.93 9.17 9.17"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83 4.24 4.24"/><path d="M4.93 19.07 9.17 14.83"/></svg>
-                     <h3 class="font-semibold text-lg">Simplifies Relationships</h3>
-                     <p class="text-sm text-slate-500">Transforms many-to-many into one-to-many.</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M4.93 4.93 9.17 9.17"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83 4.24 4.24"/><path d="M4.93 19.07 9.17 14.83"/></svg>
+                     <h3 class="font-semibold text-md">Simplifies Relationships</h3>
+                     <p class="text-xs text-slate-500">Transforms many-to-many into one-to-many.</p>
                  </div>
                  <div class="icon-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18"/><path d="M9 22V9"/></svg>
-                     <h3 class="font-semibold text-lg">Cleaner Architecture</h3>
-                     <p class="text-sm text-slate-500">Promotes a more organized and understandable system.</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18"/><path d="M9 22V9"/></svg>
+                     <h3 class="font-semibold text-md">Cleaner Architecture</h3>
+                     <p class="text-xs text-slate-500">Promotes a more organized and understandable system.</p>
                  </div>
              </div>
         </div>
         
-        <!-- Slide 6: Problem Without Mediator -->
+        <!-- Slide 9: Problem Without Mediator -->
         <div class="slide items-center slide-row">
             <div class="w-1/2 pr-8">
-                 <h2 class="text-4xl font-bold mb-4 text-slate-700">Problem Without Mediator</h2>
-                <p class="text-lg text-slate-600 mb-6">Consider a system with N objects, where each object needs to communicate with every other object. The number of direct communication paths grows exponentially.</p>
-                <ul class="list-disc list-inside space-y-2 text-slate-600">
+                 <h2 class="text-3xl font-bold mb-4 text-slate-700">Problem Without Mediator</h2>
+                <p class="text-base text-slate-600 mb-4">Consider a system with N objects, where each object needs to communicate with every other object. The number of direct communication paths grows exponentially.</p>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 text-sm">
                     <li><b>Maintenance Nightmare:</b> Changing one object requires modifying all related objects.</li>
                     <li><b>Error Propagation:</b> A change can unexpectedly break functionality elsewhere.</li>
                     <li><b>Complex Debugging:</b> Tracing communication paths is incredibly difficult.</li>
@@ -314,28 +410,29 @@
             </div>
         </div>
 
-        <!-- Slide 7: Real-life Example -->
+        <!-- Slide 10: Real-life Example -->
          <div class="slide">
-             <h2 class="text-4xl font-bold mb-4 text-slate-700 text-center">Real-life Example: Air Traffic Control</h2>
-             <p class="text-xl text-slate-600 mb-8 text-center">An excellent analogy for the Mediator pattern is an Air Traffic Controller (ATC), who manages all communication between pilots.</p>
+             <h2 class="text-3xl font-bold mb-4 text-slate-700 text-center">Real-life Example: Air Traffic Control</h2>
+             <p class="text-lg text-slate-600 mb-6 text-center">An excellent analogy for the Mediator pattern is an Air Traffic Controller (ATC), who manages all communication between pilots.</p>
              <div class="icon-card-container">
                  <div class="icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 2v20"/><path d="m4.93 4.93 14.14 14.14"/><path d="m4.93 19.07 14.14-14.14"/></svg>
-                     <h3 class="font-semibold text-lg">Chatroom</h3>
-                     <p class="text-sm text-slate-500">Users communicate via a central chat server.</p>
+                     <h3 class="font-semibold text-md">Chatroom</h3>
+                     <p class="text-xs text-slate-500">Users communicate via a central chat server.</p>
                  </div>
                  <div class="icon-card">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-                     <h3 class="font-semibold text-lg">Customer Support</h3>
-                     <p class="text-sm text-slate-500">Interactions are managed through a helpdesk system.</p>
+                     <h3 class="font-semibold text-md">Customer Support</h3>
+                     <p class="text-xs text-slate-500">Interactions are managed through a helpdesk system.</p>
                  </div>
                  <div class="icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/></svg>
-                     <h3 class="font-semibold text-lg">Auction System</h3>
-                     <p class="text-sm text-slate-500">Bidders interact only through the auctioneer.</p>
+                     <h3 class="font-semibold text-md">Auction System</h3>
+                     <p class="text-xs text-slate-500">Bidders interact only through the auctioneer.</p>
                  </div>
              </div>
         </div>
+
 
         <!-- Navigation -->
         <button id="prevBtn" class="nav-button">&larr; Prev</button>
