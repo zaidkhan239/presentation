@@ -257,91 +257,7 @@
              </div>
         </div>
 
-        <!-- Slide 4: Structure Part 1 -->
-        <div class="slide slide-row">
-            <div class="w-1/2 pr-8">
-                <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 1: The Mediator</h2>
-                <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-lg text-blue-500 mb-2">1. Mediator Interface</h3>
-                        <p class="text-sm text-slate-600">This interface defines the contract for communication. It declares methods that Colleague objects use to send messages, ensuring all mediators have a consistent API.</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-lg text-blue-500 mb-2">2. Concrete Mediator</h3>
-                        <p class="text-sm text-slate-600">This class implements the Mediator interface and contains the complex logic for coordinating Colleagues. It holds references to all Colleague objects to route communication between them.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/2 flex justify-center items-center">
-                <img src="https://placehold.co/400x300/A5B4FC/1E293B?text=Mediator+Roles" alt="Diagram of Mediator Roles" class="rounded-lg shadow-xl">
-            </div>
-        </div>
-
-        <!-- Slide 5: Structure Part 2 -->
-        <div class="slide slide-row">
-             <div class="w-1/2 pr-8">
-                <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 2: The Colleagues</h2>
-                <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-lg text-pink-500 mb-2">3. Colleague Interface</h3>
-                        <p class="text-sm text-slate-600">This defines the contract for all Colleague objects. It typically includes a reference to their Mediator, allowing them to communicate with it.</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-lg text-pink-500 mb-2">4. Concrete Colleagues</h3>
-                        <p class="text-sm text-slate-600">These are the individual components of the system. Each Colleague only knows about its Mediator and communicates indirectly with other Colleagues through it.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/2 flex justify-center items-center">
-                 <img src="https://placehold.co/400x300/F9A8D4/1E293B?text=Colleague+Roles" alt="Diagram of Colleague Roles" class="rounded-lg shadow-xl">
-            </div>
-        </div>
-
-        <!-- Slide 6: Code Example -->
-        <div class="slide slide-row">
-            <div class="w-2/5 pr-8">
-                 <h2 class="text-2xl font-bold mb-4 text-slate-700">Code Example: Chatroom</h2>
-                 <p class="text-sm text-slate-600 mb-4">Here's a simple JavaScript example. The <code class="bg-slate-200 text-sm px-1 rounded">Chatroom</code> is the <strong>Mediator</strong>, and each <code class="bg-slate-200 text-sm px-1 rounded">User</code> is a <strong>Colleague</strong>.</p>
-                 <p class="text-sm text-slate-600">Users don't know about each other; they only send messages to the chatroom. The chatroom then broadcasts the message to all other users.</p>
-            </div>
-            <div class="w-3/5">
-                <div class="code-block">
-<span style="color: #63b3ed;">// The Colleague</span>
-class User {
-  constructor(name, chatroom) {
-    this.name = name;
-    this.chatroom = chatroom;
-  }
-  send(message) {
-    this.chatroom.sendMessage(message, this);
-  }
-  receive(message, from) {
-    console.log(`${from.name} to ${this.name}: ${message}`);
-  }
-}
-
-<span style="color: #63b3ed;">// The Mediator</span>
-class Chatroom {
-  constructor() {
-    this.users = {};
-  }
-  register(user) {
-    this.users[user.name] = user;
-    user.chatroom = this;
-  }
-  sendMessage(message, from) {
-    for (let key in this.users) {
-      if (this.users[key] !== from) {
-        this.users[key].receive(message, from);
-      }
-    }
-  }
-}
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 7: What is Mediator? -->
+        <!-- Slide 4: What is Mediator? -->
         <div class="slide items-center slide-row">
             <div class="w-1/2 pr-8">
                 <h2 class="text-3xl font-bold mb-4 text-slate-700">What is the Mediator Pattern?</h2>
@@ -371,7 +287,7 @@ class Chatroom {
             </div>
         </div>
         
-        <!-- Slide 8: Why Mediator is Needed? -->
+        <!-- Slide 5: Why Mediator is Needed? -->
         <div class="slide">
              <h2 class="text-3xl font-bold mb-4 text-slate-700">Why Mediator is Needed?</h2>
              <p class="text-lg text-slate-600 mb-6">When objects communicate directly, dependencies proliferate, creating a complex web of connections that becomes a nightmare to manage. The Mediator pattern intervenes to simplify these relationships.</p>
@@ -394,7 +310,7 @@ class Chatroom {
              </div>
         </div>
         
-        <!-- Slide 9: Problem Without Mediator -->
+        <!-- Slide 6: Problem Without Mediator -->
         <div class="slide items-center slide-row">
             <div class="w-1/2 pr-8">
                  <h2 class="text-3xl font-bold mb-4 text-slate-700">Problem Without Mediator</h2>
@@ -410,7 +326,7 @@ class Chatroom {
             </div>
         </div>
 
-        <!-- Slide 10: Real-life Example -->
+        <!-- Slide 7: Real-life Example -->
          <div class="slide">
              <h2 class="text-3xl font-bold mb-4 text-slate-700 text-center">Real-life Example: Air Traffic Control</h2>
              <p class="text-lg text-slate-600 mb-6 text-center">An excellent analogy for the Mediator pattern is an Air Traffic Controller (ATC), who manages all communication between pilots.</p>
@@ -431,6 +347,162 @@ class Chatroom {
                      <p class="text-xs text-slate-500">Bidders interact only through the auctioneer.</p>
                  </div>
              </div>
+        </div>
+        
+        <!-- Slide 8: Structure Part 1 -->
+        <div class="slide slide-row">
+            <div class="w-1/2 pr-8">
+                <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 1: The Mediator</h2>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg text-blue-500 mb-2">1. Mediator Interface</h3>
+                        <p class="text-sm text-slate-600">This interface defines the contract for communication. It declares methods that Colleague objects use to send messages, ensuring all mediators have a consistent API.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg text-blue-500 mb-2">2. Concrete Mediator</h3>
+                        <p class="text-sm text-slate-600">This class implements the Mediator interface and contains the complex logic for coordinating Colleagues. It holds references to all Colleague objects to route communication between them.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2 flex justify-center items-center">
+                <img src="https://placehold.co/400x300/A5B4FC/1E293B?text=Mediator+Roles" alt="Diagram of Mediator Roles" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+
+        <!-- Slide 9: Structure Part 2 -->
+        <div class="slide slide-row">
+             <div class="w-1/2 pr-8">
+                <h2 class="text-3xl font-bold mb-4 text-slate-700">Structure Part 2: The Colleagues</h2>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg text-pink-500 mb-2">3. Colleague Interface</h3>
+                        <p class="text-sm text-slate-600">This defines the contract for all Colleague objects. It typically includes a reference to their Mediator, allowing them to communicate with it.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg text-pink-500 mb-2">4. Concrete Colleagues</h3>
+                        <p class="text-sm text-slate-600">These are the individual components of the system. Each Colleague only knows about its Mediator and communicates indirectly with other Colleagues through it.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2 flex justify-center items-center">
+                 <img src="https://placehold.co/400x300/F9A8D4/1E293B?text=Colleague+Roles" alt="Diagram of Colleague Roles" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+
+        <!-- Slide 10: C# Code Example -->
+        <div class="slide slide-row">
+            <div class="w-2/5 pr-8">
+                 <h2 class="text-2xl font-bold mb-4 text-slate-700">C# Code Example: Chatroom</h2>
+                 <p class="text-sm text-slate-600 mb-4">Here's a simple C# example. The <code class="bg-slate-200 text-sm px-1 rounded">Chatroom</code> is the <strong>Mediator</strong>, and each <code class="bg-slate-200 text-sm px-1 rounded">User</code> is a <strong>Colleague</strong>.</p>
+                 <p class="text-sm text-slate-600">Users don't know about each other; they only send messages to the chatroom. The chatroom then broadcasts the message to all other users.</p>
+            </div>
+            <div class="w-3/5">
+                <div class="code-block">
+<span style="color: #808080;">// The Mediator Interface</span>
+<span style="color: #63b3ed;">public interface</span> <span style="color: #4fd1c5;">IChatroom</span> {
+    <span style="color: #63b3ed;">void</span> Register(<span style="color: #4fd1c5;">User</span> user);
+    <span style="color: #63b3ed;">void</span> SendMessage(<span style="color: #63b3ed;">string</span> message, <span style="color: #4fd1c5;">User</span> from);
+}
+
+<span style="color: #808080;">// The Colleague</span>
+<span style="color: #63b3ed;">public class</span> <span style="color: #4fd1c5;">User</span> {
+    <span style="color: #63b3ed;">public string</span> Name { <span style="color: #63b3ed;">get</span>; }
+    <span style="color: #63b3ed;">private</span> <span style="color: #4fd1c5;">IChatroom</span> _chatroom;
+    <span style="color: #808080;">/* ... methods to send/receive ... */</span>
+}
+
+<span style="color: #808080;">// The Concrete Mediator</span>
+<span style="color: #63b3ed;">public class</span> <span style="color: #4fd1c5;">Chatroom</span> : <span style="color: #4fd1c5;">IChatroom</span> {
+    <span style="color: #63b3ed;">private</span> Dictionary&lt;<span style="color: #63b3ed;">string</span>, <span style="color: #4fd1c5;">User</span>&gt; _users = <span style="color: #63b3ed;">new</span>();
+
+    <span style="color: #63b3ed;">public void</span> Register(<span style="color: #4fd1c5;">User</span> user) {
+        _users[user.Name] = user;
+    }
+    <span style="color: #808080;">/* ... SendMessage logic ... */</span>
+}
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Advantages & Disadvantages -->
+        <div class="slide slide-row">
+            <div class="w-1/2 pr-8">
+                <h2 class="text-2xl font-bold mb-4 text-green-600">Advantages</h2>
+                <ul class="list-disc list-inside space-y-2 text-slate-700 text-sm">
+                    <li><b>Loose Coupling:</b> Colleagues are decoupled from each other, leading to more reusable components.</li>
+                    <li><b>Centralized Control:</b> Interaction logic is in one place, making it easier to understand and manage.</li>
+                    <li><b>Improved Reusability:</b> Individual colleagues can be reused independently of others.</li>
+                    <li><b>Simplified Communication:</b> Reduces complex many-to-many relationships to simple one-to-many.</li>
+                </ul>
+            </div>
+            <div class="w-1/2 pl-8 border-l border-slate-300">
+                <h2 class="text-2xl font-bold mb-4 text-red-600">Disadvantages</h2>
+                 <ul class="list-disc list-inside space-y-2 text-slate-700 text-sm">
+                    <li><b>Mediator Complexity (God Object):</b> The mediator can become overly complex and monolithic if it handles too much logic.</li>
+                    <li><b>Performance Bottleneck:</b> All communication passes through the mediator, which can become a bottleneck in high-throughput systems.</li>
+                    <li><b>Difficult to Maintain:</b> A large, complex mediator can become difficult to maintain over time.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Slide 12: Concrete Example: GUI Form -->
+        <div class="slide slide-row">
+            <div class="w-1/2 pr-8">
+                <h2 class="text-3xl font-bold mb-4 text-slate-700">A Concrete Example: GUI Form</h2>
+                <p class="text-sm text-slate-600 mb-4">
+                    Imagine a login dialog. The dialog itself acts as the <strong>Mediator</strong>. The text boxes, checkbox, and buttons are the <strong>Colleagues</strong>.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm">
+                    <li>The 'Login' button doesn't know about the text boxes. It just tells the dialog "I was clicked".</li>
+                    <li>The 'Guest Login' checkbox tells the dialog "I was checked".</li>
+                    <li>The dialog (Mediator) then decides what to do. If the checkbox is checked, it might disable the username/password fields. If the login button is clicked, it reads the data from the fields and validates it.</li>
+                    <li>This way, the button never talks directly to the textbox. All logic is centralized in the dialog.</li>
+                </ul>
+            </div>
+            <div class="w-1/2 flex justify-center items-center">
+                <div class="bg-white rounded-lg shadow-2xl p-6 w-full max-w-sm">
+                    <h3 class="text-lg font-bold text-center mb-4">Login</h3>
+                    <div class="space-y-3">
+                        <input type="text" placeholder="Username" class="w-full p-2 border rounded-md bg-gray-100" disabled>
+                        <input type="password" placeholder="Password" class="w-full p-2 border rounded-md bg-gray-100" disabled>
+                        <label class="flex items-center space-x-2 text-sm">
+                            <input type="checkbox" class="rounded" checked>
+                            <span>Enable Guest Mode</span>
+                        </label>
+                        <button class="w-full bg-blue-500 text-white p-2 rounded-md font-semibold">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Practical Applications -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-6 text-slate-700 text-center">Practical Applications</h2>
+            <p class="text-lg text-slate-600 mb-8 text-center">The Mediator pattern is ideal for scenarios with complex communication between multiple objects.</p>
+            <div class="icon-card-container">
+                <div class="icon-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                    <h3 class="font-semibold text-md">GUI Components</h3>
+                    <p class="text-xs text-slate-500">Coordinating interactions between various UI elements like buttons, text fields, and lists in a dialog box.</p>
+                </div>
+                <div class="icon-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <h3 class="font-semibold text-md">Chat Applications</h3>
+                    <p class="text-xs text-slate-500">A central server (mediator) manages communication between all users (colleagues).</p>
+                </div>
+                <div class="icon-card">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                    <h3 class="font-semibold text-md">Scheduling Systems</h3>
+                    <p class="text-xs text-slate-500">A central scheduler coordinates tasks and resources without them needing to know about each other.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Conclusion -->
+        <div class="slide text-center">
+            <h2 class="text-4xl font-bold mb-6 text-slate-700">Conclusion</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">The Mediator pattern is a powerful tool for simplifying complex communication webs, promoting loose coupling and creating more maintainable and scalable systems.</p>
+            <h3 class="text-5xl font-bold text-blue-500">Q & A</h3>
         </div>
 
 
